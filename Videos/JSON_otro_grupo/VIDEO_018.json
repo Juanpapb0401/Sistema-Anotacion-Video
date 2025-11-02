@@ -1,0 +1,248 @@
+[
+  {
+    "id": 48,
+    "annotations": [
+      {
+        "id": 48,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 1,
+                  "end": 47
+                }
+              ],
+              "timelinelabels": [
+                "Parado sin movimiento"
+              ]
+            },
+            "id": "mXHKdd4mRx",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 47,
+                  "end": 99
+                }
+              ],
+              "timelinelabels": [
+                "Caminar acercandose"
+              ]
+            },
+            "id": "Pm3NPdLn7c",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 99,
+                  "end": 135
+                }
+              ],
+              "timelinelabels": [
+                "Giro 180 derecha"
+              ]
+            },
+            "id": "cCokXwPbVq",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 135,
+                  "end": 172
+                }
+              ],
+              "timelinelabels": [
+                "Caminar alejandose (espaldas)"
+              ]
+            },
+            "id": "LGyIv4ZvoH",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 172,
+                  "end": 194
+                }
+              ],
+              "timelinelabels": [
+                "Giro 180 izquierda"
+              ]
+            },
+            "id": "DZeaAI3OuO",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 194,
+                  "end": 225
+                }
+              ],
+              "timelinelabels": [
+                "Sentarse"
+              ]
+            },
+            "id": "BXTRKcWKoi",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 225,
+                  "end": 244
+                }
+              ],
+              "timelinelabels": [
+                "Ponerse de pie"
+              ]
+            },
+            "id": "Bw3hqRt2mG",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 244,
+                  "end": 306
+                }
+              ],
+              "timelinelabels": [
+                "Caminar acercandose"
+              ]
+            },
+            "id": "XN9PIMbsjD",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 306,
+                  "end": 330
+                }
+              ],
+              "timelinelabels": [
+                "Inclinarse derecha"
+              ]
+            },
+            "id": "4ofxl4ep0v",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 330,
+                  "end": 362
+                }
+              ],
+              "timelinelabels": [
+                "Inclinarse izquierda"
+              ]
+            },
+            "id": "TU7rPK9DJi",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "ranges": [
+                {
+                  "start": 362,
+                  "end": 480
+                }
+              ],
+              "timelinelabels": [
+                "Sentadillas"
+              ]
+            },
+            "id": "_oEzNk6f-Z",
+            "from_name": "videoLabels",
+            "to_name": "video",
+            "type": "timelinelabels",
+            "origin": "manual"
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2025-10-26T01:39:02.583824Z",
+        "updated_at": "2025-10-26T01:39:02.583864Z",
+        "draft_created_at": "2025-10-26T01:36:52.821164Z",
+        "lead_time": 141.541,
+        "prediction": {},
+        "result_count": 11,
+        "unique_id": "1ed2f565-6c6e-4764-a370-aaa6e84cfa20",
+        "import_id": null,
+        "last_action": null,
+        "bulk_created": false,
+        "task": 48,
+        "project": 11,
+        "updated_by": 1,
+        "parent_prediction": null,
+        "parent_annotation": null,
+        "last_created_by": null
+      }
+    ],
+    "file_upload": "c2b5ab37-VIDEO_018.mp4",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "video": "/data/upload/11/c2b5ab37-VIDEO_018.mp4"
+    },
+    "meta": {},
+    "created_at": "2025-10-26T00:22:25.011669Z",
+    "updated_at": "2025-10-26T01:39:02.661624Z",
+    "inner_id": 18,
+    "total_annotations": 1,
+    "cancelled_annotations": 0,
+    "total_predictions": 0,
+    "comment_count": 0,
+    "unresolved_comment_count": 0,
+    "last_comment_updated_at": null,
+    "project": 11,
+    "updated_by": 1,
+    "comment_authors": []
+  }
+]

@@ -1,0 +1,60 @@
+================================================================================
+REPORTE DE ENTRENAMIENTO DE MODELOS
+Sistema de Anotación de Video - Entrega 2
+================================================================================
+
+Fecha: 2025-10-30 00:26:27
+
+📊 RESUMEN DE MODELOS
+--------------------------------------------------------------------------------
+Modelo               Accuracy     F1-Score     Tiempo (s)  
+--------------------------------------------------------------------------------
+🏆 XGBoost            0.7791       0.7811       246.12      
+   Random Forest      0.7758       0.7789       689.39      
+   SVM                0.6448       0.6506       4141.52     
+
+🔍 DETALLES DE MODELOS
+--------------------------------------------------------------------------------
+
+SVM:
+  Mejores hiperparámetros:
+    - C: 100
+    - gamma: scale
+    - kernel: rbf
+  Score CV (5-fold): 0.7566
+  Accuracy (validación): 0.6448
+  F1-Score (validación): 0.6506
+  Tiempo de entrenamiento: 4141.52s
+
+Random Forest:
+  Mejores hiperparámetros:
+    - max_depth: None
+    - min_samples_leaf: 1
+    - min_samples_split: 2
+    - n_estimators: 300
+  Score CV (5-fold): 0.8827
+  Accuracy (validación): 0.7758
+  F1-Score (validación): 0.7789
+  Tiempo de entrenamiento: 689.39s
+
+XGBoost:
+  Mejores hiperparámetros:
+    - colsample_bytree: 1.0
+    - learning_rate: 0.3
+    - max_depth: 7
+    - n_estimators: 300
+    - subsample: 1.0
+  Score CV (5-fold): 0.8864
+  Accuracy (validación): 0.7791
+  F1-Score (validación): 0.7811
+  Tiempo de entrenamiento: 246.12s
+
+🏆 MEJOR MODELO
+--------------------------------------------------------------------------------
+Modelo seleccionado: XGBoost
+F1-Score: 0.7811
+Accuracy: 0.7791
+
+El mejor modelo ha sido guardado como 'best_model.pkl'
+
+================================================================================

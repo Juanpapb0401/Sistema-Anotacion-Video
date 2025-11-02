@@ -1,0 +1,49 @@
+{
+  "total_videos": 69,
+  "total_frames": 63964,
+  "labeled_frames": 50075,
+  "excluded_frames": 12375,
+  "main_label_frames": 29701,
+  "videos_by_person": {
+    "Joshua": 12,
+    "Juan": 12,
+    "Santiago": 11,
+    "Thomas": 12,
+    "OtroGrupo": 22
+  },
+  "frames_by_label": {
+    "caminar_hacia_camara": 10700,
+    "girar": 9028,
+    "sin_movimiento": 7069,
+    "sentadilla": 6887,
+    "inclinacion_lateral": 6418,
+    "caminar_de_regreso": 4188,
+    "sentarse": 3318,
+    "ponerse_de_pie": 2467
+  },
+  "includes_other_group": true,
+  "other_group_videos": [
+    "VIDEO_01",
+    "VIDEO_03",
+    "VIDEO_04",
+    "VIDEO_05",
+    "VIDEO_06",
+    "VIDEO_07",
+    "VIDEO_08",
+    "VIDEO_09",
+    "VIDEO_010",
+    "VIDEO_011",
+    "VIDEO_012",
+    "VIDEO_013",
+    "VIDEO_014",
+    "VIDEO_015",
+    "VIDEO_016",
+    "VIDEO_017",
+    "VIDEO_018",
+    "VIDEO_020",
+    "VIDEO_021",
+    "VIDEO_022",
+    "VIDEO_023",
+    "VIDEO_024"
+  ]
+}

@@ -1,0 +1,66 @@
+# Entorno Virtual de Python
+venv/
+env/
+ENV/
+.venv/
+
+# Videos (archivos grandes)
+Entrega1/data/raw_videos
+Entrega1/data/raw_videos_otro_grupo
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Archivos de sistema macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Archivos temporales
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de configuración local
+.env
+.env.local
+*.local
+
+# Modelos entrenados (si son muy grandes)
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.onnx
+
+# Datasets grandes (CSV procesados)
+Entrega2/data/train.csv
+Entrega2/data/validation.csv
+Entrega2/data/test.csv
+Entrega2/data/labeled_dataset_complete.csv
+Entrega2/data/labeled_dataset_main.csv
+
+# Datos de prueba temporal
+temp/
+tmp/
+test_output/*.mp4
+*.csv
+Entrega2/data/train.csv

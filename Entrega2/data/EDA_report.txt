@@ -1,0 +1,101 @@
+================================================================================
+REPORTE DE ANÁLISIS EXPLORATORIO DE DATOS
+Sistema de Anotación de Video - Entrega 2
+================================================================================
+
+📊 INFORMACIÓN GENERAL
+--------------------------------------------------------------------------------
+Total de videos procesados: 47
+Total de frames: 41,724
+Frames etiquetados: 32,533 (78.0%)
+Frames con etiquetas principales: 20,158
+
+👥 VIDEOS POR PERSONA
+--------------------------------------------------------------------------------
+Joshua: 12 videos, 6,599 frames
+Juan: 12 videos, 5,224 frames
+Santiago: 11 videos, 3,917 frames
+Thomas: 12 videos, 4,418 frames
+
+🏷️  DISTRIBUCIÓN DE CLASES (PRINCIPALES)
+--------------------------------------------------------------------------------
+girar: 7,101 frames (35.23%)
+caminar_hacia_camara: 6,480 frames (32.15%)
+caminar_de_regreso: 2,510 frames (12.45%)
+sentarse: 2,363 frames (11.72%)
+ponerse_de_pie: 1,704 frames (8.45%)
+
+⚖️  BALANCE DE CLASES
+--------------------------------------------------------------------------------
+Clase más frecuente: girar (7,101 frames)
+Clase menos frecuente: ponerse_de_pie (1,704 frames)
+Ratio de desbalance: 4.17x
+⚠️  ADVERTENCIA: Dataset desbalanceado. Considerar técnicas de balanceo.
+
+⏱️  DURACIÓN PROMEDIO DE ACTIVIDADES (frames)
+--------------------------------------------------------------------------------
+caminar_de_regreso:
+  Media: 55.8 ± 20.0
+  Rango: [31, 123]
+caminar_hacia_camara:
+  Media: 68.9 ± 25.0
+  Rango: [30, 161]
+girar:
+  Media: 58.2 ± 30.9
+  Rango: [14, 174]
+ponerse_de_pie:
+  Media: 37.9 ± 16.3
+  Rango: [14, 78]
+sentarse:
+  Media: 52.0 ± 23.9
+  Rango: [16, 130]
+
+🎥 DISTRIBUCIÓN POR VELOCIDAD
+--------------------------------------------------------------------------------
+normal: 16,170 frames (80.22%)
+lento: 3,988 frames (19.78%)
+
+📐 ESTADÍSTICAS DE CARACTERÍSTICAS
+--------------------------------------------------------------------------------
+
+left_knee_angle:
+  caminar_de_regreso: 168.02° ± 11.40°
+  caminar_hacia_camara: 136.88° ± 41.33°
+  girar: 148.81° ± 36.64°
+  ponerse_de_pie: 111.25° ± 37.66°
+  sentarse: 157.63° ± 23.38°
+
+right_knee_angle:
+  caminar_de_regreso: 168.87° ± 12.07°
+  caminar_hacia_camara: 138.11° ± 42.72°
+  girar: 149.51° ± 36.92°
+  ponerse_de_pie: 112.83° ± 38.54°
+  sentarse: 157.34° ± 24.35°
+
+left_elbow_angle:
+  caminar_de_regreso: 149.62° ± 16.37°
+  caminar_hacia_camara: 140.20° ± 26.20°
+  girar: 121.20° ± 56.97°
+  ponerse_de_pie: 118.80° ± 30.59°
+  sentarse: 152.14° ± 20.62°
+
+right_elbow_angle:
+  caminar_de_regreso: 146.65° ± 20.28°
+  caminar_hacia_camara: 142.01° ± 28.76°
+  girar: 132.54° ± 42.38°
+  ponerse_de_pie: 118.80° ± 29.18°
+  sentarse: 149.03° ± 21.56°
+
+💡 RECOMENDACIONES
+--------------------------------------------------------------------------------
+1. Aplicar técnicas de balanceo de clases:
+   - SMOTE (Synthetic Minority Over-sampling Technique)
+   - Oversampling de clases minoritarias
+   - Undersampling de clases mayoritarias
+   - Class weights en el modelo
+3. Preprocesamiento adicional:
+   - Normalización de características
+   - Extracción de características temporales (ventanas)
+   - Feature engineering basado en dominio
+
+================================================================================

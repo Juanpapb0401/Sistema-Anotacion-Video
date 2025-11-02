@@ -1,0 +1,49 @@
+{
+  "timestamp": "2025-10-30 00:26:27",
+  "models": [
+    {
+      "model_name": "SVM",
+      "best_params": {
+        "C": 100,
+        "gamma": "scale",
+        "kernel": "rbf"
+      },
+      "best_cv_score": 0.756551085120427,
+      "val_accuracy": 0.6448412698412699,
+      "val_f1_score": 0.6506394996328488,
+      "training_time": 4141.52165389061
+    },
+    {
+      "model_name": "Random Forest",
+      "best_params": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 300
+      },
+      "best_cv_score": 0.8826657850810576,
+      "val_accuracy": 0.7757936507936508,
+      "val_f1_score": 0.778878791755318,
+      "training_time": 689.3899567127228
+    },
+    {
+      "model_name": "XGBoost",
+      "best_params": {
+        "colsample_bytree": 1.0,
+        "learning_rate": 0.3,
+        "max_depth": 7,
+        "n_estimators": 300,
+        "subsample": 1.0
+      },
+      "best_cv_score": 0.8863719857652421,
+      "val_accuracy": 0.7791005291005291,
+      "val_f1_score": 0.7811351974845753,
+      "training_time": 246.12422966957092
+    }
+  ],
+  "best_model": {
+    "name": "XGBoost",
+    "f1_score": 0.7811351974845753,
+    "accuracy": 0.7791005291005291
+  }
+}

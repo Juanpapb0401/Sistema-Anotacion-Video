@@ -1,0 +1,42 @@
+================================================================================
+REPORTE DE PREPARACIÓN DE DATOS
+Sistema de Anotación de Video - Entrega 2
+================================================================================
+
+📊 INFORMACIÓN GENERAL
+--------------------------------------------------------------------------------
+Dataset original: 29,701 frames
+Features extraídas: 147
+Clases: 5
+Clases: caminar_de_regreso, caminar_hacia_camara, girar, ponerse_de_pie, sentarse
+
+✂️  DIVISIÓN DE DATOS
+--------------------------------------------------------------------------------
+Train: 37,450 (80.8%)
+Validation: 4,455 (9.6%)
+Test: 4,456 (9.6%)
+Total: 46,361
+
+
+Train - Distribución de clases:
+  caminar_de_regreso: 7,490 (20.0%)
+  caminar_hacia_camara: 7,490 (20.0%)
+  girar: 7,490 (20.0%)
+  ponerse_de_pie: 7,490 (20.0%)
+  sentarse: 7,490 (20.0%)
+
+Validation - Distribución de clases:
+  caminar_de_regreso: 628 (14.1%)
+  caminar_hacia_camara: 1,605 (36.0%)
+  girar: 1,354 (30.4%)
+  ponerse_de_pie: 370 (8.3%)
+  sentarse: 498 (11.2%)
+
+Test - Distribución de clases:
+  caminar_de_regreso: 628 (14.1%)
+  caminar_hacia_camara: 1,605 (36.0%)
+  girar: 1,355 (30.4%)
+  ponerse_de_pie: 370 (8.3%)
+  sentarse: 498 (11.2%)
+
+================================================================================
