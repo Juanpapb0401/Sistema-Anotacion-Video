@@ -1,0 +1,29 @@
+# Entorno Virtual
+venv/
+env/
+.venv/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+
+# Videos de prueba
+*.mp4
+*.avi
+*.mov
+test_videos/
+
+# Sesiones grabadas
+recordings/
+sessions/
+
+# Modelos temporales
+temp_models/
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
