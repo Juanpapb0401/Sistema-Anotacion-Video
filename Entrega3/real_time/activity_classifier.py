@@ -22,28 +22,28 @@ class ActivityClassifier:
             scaler_path: Ruta al scaler (.pkl)
             label_encoder_path: Ruta al label encoder (.pkl)
         """
-        print("📂 Cargando modelo y preprocesadores...")
+        print(" Cargando modelo y preprocesadores...")
         
         # Cargar modelo
         self.model = joblib.load(model_path)
-        print(f"   ✅ Modelo cargado: {Path(model_path).name}")
+        print(f"    Modelo cargado: {Path(model_path).name}")
         
         # Detectar cuántas características espera el modelo
         self.n_features_expected = self.model.n_features_in_ if hasattr(self.model, 'n_features_in_') else None
         if self.n_features_expected:
-            print(f"   📊 Modelo espera {self.n_features_expected} características")
+            print(f"    Modelo espera {self.n_features_expected} características")
         
         # Cargar scaler
         self.scaler = joblib.load(scaler_path)
-        print(f"   ✅ Scaler cargado")
+        print(f"    Scaler cargado")
         
         # Cargar label encoder
         self.label_encoder = joblib.load(label_encoder_path)
-        print(f"   ✅ Label encoder cargado")
+        print(f"    Label encoder cargado")
         
         # Cargar mapeo de nombres reales de actividades
         self.activity_names = self._load_activity_names()
-        print(f"   📋 Clases: {list(self.activity_names.values())}")
+        print(f"    Clases: {list(self.activity_names.values())}")
         
         # Cargar información de features esperadas
         self.feature_names = self._load_feature_names()
@@ -85,7 +85,7 @@ class ActivityClassifier:
                 if class_names:
                     activity_dict = {i: name for i, name in enumerate(class_names)}
                     
-                    print(f"   📋 Mapeo de clases cargado desde preparation_info.json:")
+                    print(f"    Mapeo de clases cargado desde preparation_info.json:")
                     for label, name in activity_dict.items():
                         print(f"      {label} → {name}")
                     
@@ -94,20 +94,20 @@ class ActivityClassifier:
             # Fallback: si label_encoder tiene strings, usarlos
             if isinstance(self.label_encoder.classes_[0], str):
                 activity_dict = {i: cls for i, cls in enumerate(self.label_encoder.classes_)}
-                print(f"   📋 Usando nombres de label_encoder.classes_")
+                print(f"    Usando nombres de label_encoder.classes_")
                 return activity_dict
             
             # Último fallback: nombres genéricos
-            print("   ⚠️  No se encontraron nombres de clases, usando genéricos")
+            print("   ️  No se encontraron nombres de clases, usando genéricos")
             return {i: f"Clase_{i}" for i in range(len(self.label_encoder.classes_))}
             
         except Exception as e:
-            print(f"   ⚠️  Error al cargar nombres: {e}")
+            print(f"   ️  Error al cargar nombres: {e}")
             # Fallback: usar números
             return {i: f"Clase_{i}" for i in range(len(self.label_encoder.classes_))}
                 
         except Exception as e:
-            print(f"   ⚠️  Error cargando nombres de actividades: {e}")
+            print(f"   ️  Error cargando nombres de actividades: {e}")
             # Fallback: usar los nombres del label_encoder como strings
             return {cls: f"Clase_{cls}" for cls in self.label_encoder.classes_}
         
@@ -120,7 +120,7 @@ class ActivityClassifier:
                 info = json.load(f)
                 return info['feature_names']
         except Exception as e:
-            print(f"⚠️  No se pudieron cargar feature_names: {e}")
+            print(f"️  No se pudieron cargar feature_names: {e}")
             return None
     
     def _load_selected_features(self) -> list:
@@ -134,13 +134,13 @@ class ActivityClassifier:
                 with open(selected_path, 'r') as f:
                     info = json.load(f)
                     selected = info.get('selected_feature_names', [])
-                    print(f"   📋 Usando {len(selected)} features seleccionadas")
+                    print(f"    Usando {len(selected)} features seleccionadas")
                     return selected
             else:
-                print(f"   ℹ️  No se encontró selected_features.json, usando todas las features")
+                print(f"   ️  No se encontró selected_features.json, usando todas las features")
                 return None
         except Exception as e:
-            print(f"   ⚠️  Error cargando selected_features.json: {e}")
+            print(f"   ️  Error cargando selected_features.json: {e}")
             return None
     
     def prepare_features(self, features_dict: Dict[str, float]) -> np.ndarray:
@@ -191,14 +191,14 @@ class ActivityClassifier:
             X_final = X_scaled_all[:, selected_indices]
             
             if self.total_predictions == 0:  # Solo mostrar una vez
-                print(f"   ℹ️  Pipeline: {len(self.feature_names)} features → scaler → {len(selected_indices)} features seleccionadas")
+                print(f"   ️  Pipeline: {len(self.feature_names)} features → scaler → {len(selected_indices)} features seleccionadas")
         
         elif self.n_features_expected and X_scaled_all.shape[1] > self.n_features_expected:
             # Tomar las primeras N features escaladas
             X_final = X_scaled_all[:, :self.n_features_expected]
             
             if self.total_predictions == 0:  # Solo mostrar una vez
-                print(f"   ℹ️  Pipeline: {X_scaled_all.shape[1]} features → scaler → primeras {self.n_features_expected} features")
+                print(f"   ️  Pipeline: {X_scaled_all.shape[1]} features → scaler → primeras {self.n_features_expected} features")
         else:
             # Usar todas las features escaladas
             X_final = X_scaled_all
@@ -259,7 +259,7 @@ class ActivityClassifier:
         
         # DEBUG: Imprimir cada 30 frames
         if self.total_predictions % 30 == 0:
-            print(f"\n🔍 DEBUG Prediction #{self.total_predictions}:")
+            print(f"\n DEBUG Prediction #{self.total_predictions}:")
             print(f"   Número predicho: {prediction}")
             print(f"   Clase mapeada: {class_name}")
             print(f"   label_encoder.classes_[{prediction}] = {self.label_encoder.classes_[prediction]}")
@@ -328,7 +328,7 @@ class ActivityClassifier:
 
 def test_classifier():
     """Función de prueba para el clasificador"""
-    print("🧪 Probando ActivityClassifier...")
+    print(" Probando ActivityClassifier...")
     
     # Rutas a los archivos necesarios
     base_path = Path(__file__).parent.parent.parent / "Entrega2"
@@ -338,7 +338,7 @@ def test_classifier():
     
     # Verificar que existan los archivos
     if not model_path.exists():
-        print(f"❌ No se encontró el modelo: {model_path}")
+        print(f" No se encontró el modelo: {model_path}")
         print("   Asegúrate de haber ejecutado 04_model_training.py primero")
         return
     
@@ -349,11 +349,11 @@ def test_classifier():
         str(label_encoder_path)
     )
     
-    print("\n✅ Clasificador inicializado correctamente")
+    print("\n Clasificador inicializado correctamente")
     print(f"   Clases disponibles: {classifier.label_encoder.classes_.tolist()}")
     
     # Crear features de ejemplo (dummy)
-    print("\n📊 Probando con features de ejemplo...")
+    print("\n Probando con features de ejemplo...")
     
     # Generar features aleatorias
     dummy_features = {}
@@ -374,14 +374,14 @@ def test_classifier():
     # Hacer predicción
     result = classifier.predict_with_metadata(dummy_features)
     
-    print(f"\n🎯 Predicción:")
+    print(f"\n Predicción:")
     print(f"   Clase: {result['class']}")
     print(f"   Confianza: {result['confidence']:.2%}")
     print(f"\n   Top 3 predicciones:")
     for cls, prob in result['top_3_predictions']:
         print(f"   - {cls}: {prob:.2%}")
     
-    print("\n✅ Test completado")
+    print("\n Test completado")
 
 
 if __name__ == "__main__":

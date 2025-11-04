@@ -367,15 +367,15 @@ def test_video_processor():
     cap = cv2.VideoCapture(0)
     
     if not cap.isOpened():
-        print("❌ No se pudo abrir la cámara")
+        print(" No se pudo abrir la cámara")
         return
     
-    print("✅ Cámara abierta. Presiona 'q' para salir.")
+    print(" Cámara abierta. Presiona 'q' para salir.")
     
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
-            print("❌ No se pudo leer el frame")
+            print(" No se pudo leer el frame")
             break
         
         # Extraer landmarks
@@ -413,7 +413,7 @@ def test_video_processor():
     cv2.destroyAllWindows()
     processor.release()
     
-    print("✅ Test completado")
+    print(" Test completado")
 
 
 if __name__ == "__main__":

@@ -31,11 +31,11 @@ def main():
     
     # Verificar que existen los modelos
     if not all([model_path.exists(), scaler_path.exists(), label_encoder_path.exists()]):
-        print("❌ Error: No se encontraron los modelos entrenados")
+        print(" Error: No se encontraron los modelos entrenados")
         print("   Ejecuta primero: cd Entrega2/notebooks && python 04_model_training_gridsearch.py")
         return
     
-    print("✅ Cargando modelos...")
+    print(" Cargando modelos...")
     
     # Inicializar procesador y clasificador
     video_processor = VideoProcessor()
@@ -45,7 +45,7 @@ def main():
         str(label_encoder_path)
     )
     
-    print("✅ Modelos cargados")
+    print(" Modelos cargados")
     print()
     
     # Configurar permisos de cámara en macOS
@@ -57,7 +57,7 @@ def main():
     cap = cv2.VideoCapture(0)
     
     if not cap.isOpened():
-        print("❌ No se pudo abrir la cámara")
+        print(" No se pudo abrir la cámara")
         print()
         print("Solución para macOS:")
         print("1. Abre Preferencias del Sistema → Seguridad y Privacidad")
@@ -65,9 +65,9 @@ def main():
         print("3. Habilita permisos para Terminal/Python")
         return
     
-    print("✅ Cámara activa")
+    print(" Cámara activa")
     print()
-    print("📝 Instrucciones:")
+    print(" Instrucciones:")
     print("   - Realiza una actividad frente a la cámara")
     print("   - Verás la predicción en tiempo real")
     print("   - Presiona 'q' para salir")
@@ -84,7 +84,7 @@ def main():
         ret, frame = cap.read()
         
         if not ret:
-            print("⚠️ Error al leer frame")
+            print("️ Error al leer frame")
             break
         
         frame_count += 1
@@ -125,9 +125,9 @@ def main():
                 act_str = str(act_name)
                 # Color en terminal: verde si >0.3, amarillo si >0.2, blanco si <0.2
                 if prob > 0.3:
-                    print(f"✅ {act_str}: {prob:.2%}", end=" | ")
+                    print(f" {act_str}: {prob:.2%}", end=" | ")
                 elif prob > 0.2:
-                    print(f"⚠️  {act_str}: {prob:.2%}", end=" | ")
+                    print(f"️  {act_str}: {prob:.2%}", end=" | ")
                 else:
                     print(f"   {act_str}: {prob:.2%}", end=" | ")
             
@@ -189,8 +189,8 @@ def main():
     video_processor.release()
     
     print()
-    print("✅ Sesión finalizada")
-    print(f"📊 Total de frames procesados: {frame_count}")
+    print(" Sesión finalizada")
+    print(f" Total de frames procesados: {frame_count}")
     print()
 
 

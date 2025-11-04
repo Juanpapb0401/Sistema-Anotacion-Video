@@ -96,7 +96,7 @@ def load_models():
             missing_files.append(f"label_encoder.pkl ({label_encoder_path})")
         
         if missing_files:
-            st.error("❌ **No se encontraron los modelos entrenados:**")
+            st.error(" **No se encontraron los modelos entrenados:**")
             for file in missing_files:
                 st.error(f"   - {file}")
             st.info("💡 **Solución:** Ejecuta primero:\n```bash\ncd Entrega2/notebooks\npython 04_model_training_gridsearch.py\n```")
@@ -113,7 +113,7 @@ def load_models():
         return video_processor, classifier
         
     except Exception as e:
-        st.error(f"❌ **Error al cargar modelos:** {str(e)}")
+        st.error(f" **Error al cargar modelos:** {str(e)}")
         st.exception(e)
         return None, None
 
@@ -222,7 +222,7 @@ def main():
         st.header("⚙️ Configuración")
         
         # Opciones de visualización
-        st.subheader("📊 Visualización")
+        st.subheader(" Visualización")
         show_landmarks = st.checkbox("Mostrar landmarks", value=True)
         show_probabilities = st.checkbox("Mostrar probabilidades", value=True)
         
@@ -237,7 +237,7 @@ def main():
     video_processor, classifier = load_models()
     
     if video_processor is None or classifier is None:
-        st.warning("⚠️ **Los modelos no pudieron cargarse.**")
+        st.warning("️ **Los modelos no pudieron cargarse.**")
         st.info("""
         **Solución:**
         1. Verifica que ejecutaste el entrenamiento:
@@ -262,7 +262,7 @@ def main():
     if 'cap' not in st.session_state:
         st.session_state.cap = cv2.VideoCapture(0)
         if not st.session_state.cap.isOpened():
-            st.error("❌ No se pudo abrir la cámara")
+            st.error(" No se pudo abrir la cámara")
             st.info("""
             **Solución para cámara en macOS:**
             1. Abre **Preferencias del Sistema** → **Seguridad y Privacidad**
@@ -279,7 +279,7 @@ def main():
         video_placeholder = st.empty()
     
     with col2:
-        st.subheader("🎯 Predicción Actual")
+        st.subheader(" Predicción Actual")
         activity_placeholder = st.empty()
         confidence_placeholder = st.empty()
     
@@ -301,7 +301,7 @@ def main():
             ret, frame = st.session_state.cap.read()
             
             if not ret:
-                st.error("❌ Error al leer de la cámara")
+                st.error(" Error al leer de la cámara")
                 break
             
             frame_count += 1
@@ -352,7 +352,7 @@ def main():
                         unsafe_allow_html=True
                     )
                 else:
-                    activity_placeholder.warning("⚠️ Confianza baja - No detectado")
+                    activity_placeholder.warning("️ Confianza baja - No detectado")
                 
                 # Actualizar gráfico de probabilidades
                 if show_probabilities:
@@ -363,7 +363,7 @@ def main():
                 # No se detectó persona (como en el notebook)
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 video_placeholder.image(frame_rgb, channels="RGB", use_container_width=True)
-                activity_placeholder.warning("⚠️ No se detectó ninguna persona")
+                activity_placeholder.warning("️ No se detectó ninguna persona")
             
             # Control de FPS (como cv2.waitKey pero sin bloqueo)
             time.sleep(0.033)  # ~30 FPS

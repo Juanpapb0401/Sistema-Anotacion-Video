@@ -38,7 +38,7 @@ def main():
     # Inicializar VideoProcessor
     print("📦 Inicializando VideoProcessor...")
     processor = VideoProcessor()
-    print("✅ VideoProcessor listo")
+    print(" VideoProcessor listo")
     print()
     
     # Abrir cámara
@@ -46,14 +46,14 @@ def main():
     cap = cv2.VideoCapture(0)
     
     if not cap.isOpened():
-        print("❌ No se pudo abrir la cámara")
+        print(" No se pudo abrir la cámara")
         print("   Verifica que:")
         print("   1. Tienes una cámara conectada")
         print("   2. No está siendo usada por otra aplicación")
         print("   3. Tienes permisos de cámara en tu sistema")
         return
     
-    print("✅ Cámara abierta correctamente")
+    print(" Cámara abierta correctamente")
     print()
     print("▶️  Procesando video en vivo...")
     print()
@@ -76,7 +76,7 @@ def main():
         
         ret, frame = cap.read()
         if not ret:
-            print("❌ Error al leer frame")
+            print(" Error al leer frame")
             break
         
         frame_count += 1
@@ -259,7 +259,7 @@ def main():
             frame_count = 0
             fps_values = []
             start_time = time.time()
-            print("🔄 Estadísticas reiniciadas")
+            print(" Estadísticas reiniciadas")
     
     # Cleanup
     cap.release()
@@ -272,7 +272,7 @@ def main():
     
     print()
     print("=" * 80)
-    print("📊 ESTADÍSTICAS FINALES")
+    print(" ESTADÍSTICAS FINALES")
     print("=" * 80)
     print(f"Total de frames procesados: {frame_count}")
     print(f"Tiempo total: {total_time:.2f}s")
@@ -286,7 +286,7 @@ def main():
         print(f"  - Inclinación tronco: {np.mean(angles_history['trunk_inclination']):.2f}°")
         print()
     
-    print("✅ Prueba completada exitosamente")
+    print(" Prueba completada exitosamente")
     print("=" * 80)
 
 
@@ -294,8 +294,8 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n\n⚠️  Interrumpido por el usuario")
+        print("\n\n️  Interrumpido por el usuario")
     except Exception as e:
-        print(f"\n❌ Error: {e}")
+        print(f"\n Error: {e}")
         import traceback
         traceback.print_exc()
