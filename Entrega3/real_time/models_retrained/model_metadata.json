@@ -1,0 +1,45 @@
+{
+  "n_classes": 5,
+  "class_names": [
+    "caminar_de_regreso",
+    "caminar_hacia_camara",
+    "girar",
+    "ponerse_de_pie",
+    "sentarse"
+  ],
+  "feature_names": [
+    "left_knee_angle_mean",
+    "left_knee_angle_std",
+    "right_knee_angle_mean",
+    "right_knee_angle_std",
+    "left_hip_angle_mean",
+    "left_hip_angle_std",
+    "right_hip_angle_mean",
+    "right_hip_angle_std",
+    "trunk_incl_mean",
+    "trunk_incl_std",
+    "hip_shoulder_dist_mean",
+    "hip_shoulder_dist_std",
+    "hip_height_mean",
+    "hip_height_std",
+    "knee_height_mean",
+    "knee_height_std",
+    "ankle_height_mean",
+    "ankle_height_std",
+    "hip_knee_dist_mean",
+    "knee_ankle_dist_mean"
+  ],
+  "train_samples": 2232,
+  "val_samples": 478,
+  "test_samples": 479,
+  "personas": [
+    "Joshua",
+    "Juan",
+    "Santiago",
+    "Thomas"
+  ],
+  "rf_accuracy": 0.7098121085594989,
+  "rf_f1_macro": 0.6523002068719504,
+  "xgb_accuracy": 0.7703549060542797,
+  "xgb_f1_macro": 0.7261162874734186
+}
