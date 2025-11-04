@@ -28,6 +28,11 @@ class ActivityClassifier:
         self.model = joblib.load(model_path)
         print(f"   ✅ Modelo cargado: {Path(model_path).name}")
         
+        # Detectar cuántas características espera el modelo
+        self.n_features_expected = self.model.n_features_in_ if hasattr(self.model, 'n_features_in_') else None
+        if self.n_features_expected:
+            print(f"   📊 Modelo espera {self.n_features_expected} características")
+        
         # Cargar scaler
         self.scaler = joblib.load(scaler_path)
         print(f"   ✅ Scaler cargado")
@@ -42,6 +47,9 @@ class ActivityClassifier:
         
         # Cargar información de features esperadas
         self.feature_names = self._load_feature_names()
+        
+        # Intentar cargar features seleccionadas si existen
+        self.selected_features = self._load_selected_features()
         
         # Buffer para suavizar predicciones (ventana deslizante)
         # Aumentado a 10 frames para dar más estabilidad en acciones cortas
@@ -115,9 +123,34 @@ class ActivityClassifier:
             print(f"⚠️  No se pudieron cargar feature_names: {e}")
             return None
     
+    def _load_selected_features(self) -> list:
+        """Carga las features seleccionadas si existe el archivo"""
+        try:
+            models_path = Path(__file__).parent.parent.parent / "Entrega2" / "data"
+            selected_path = models_path / "selected_features.json"
+            
+            if selected_path.exists():
+                import json
+                with open(selected_path, 'r') as f:
+                    info = json.load(f)
+                    selected = info.get('selected_feature_names', [])
+                    print(f"   📋 Usando {len(selected)} features seleccionadas")
+                    return selected
+            else:
+                print(f"   ℹ️  No se encontró selected_features.json, usando todas las features")
+                return None
+        except Exception as e:
+            print(f"   ⚠️  Error cargando selected_features.json: {e}")
+            return None
+    
     def prepare_features(self, features_dict: Dict[str, float]) -> np.ndarray:
         """
         Prepara las features para clasificación
+        
+        IMPORTANTE: El flujo es:
+        1. Extraer TODAS las 147 features (si están disponibles)
+        2. Escalar con el scaler (entrenado con 147 features)
+        3. Seleccionar las 15 features que el modelo necesita
         
         Args:
             features_dict: Diccionario con features extraídas del video
@@ -125,26 +158,59 @@ class ActivityClassifier:
         Returns:
             Array numpy con features preparadas y normalizadas
         """
-        if self.feature_names is None:
-            # Si no tenemos los nombres, usar todas las features disponibles
-            feature_values = list(features_dict.values())
-        else:
-            # Asegurar que las features estén en el orden correcto
-            feature_values = []
+        # PASO 1: Extraer TODAS las features disponibles en el orden correcto
+        # El scaler fue entrenado con todas las features, así que necesitamos todas
+        if self.feature_names:
+            feature_values_all = []
             for fname in self.feature_names:
                 if fname in features_dict:
-                    feature_values.append(features_dict[fname])
+                    feature_values_all.append(features_dict[fname])
                 else:
                     # Si falta una feature, usar 0
-                    feature_values.append(0.0)
+                    feature_values_all.append(0.0)
+        else:
+            # Si no tenemos nombres, usar todas del dict (fallback)
+            feature_values_all = list(features_dict.values())
         
-        # Convertir a array y reshape para un sample
-        X = np.array(feature_values).reshape(1, -1)
+        # Convertir a array
+        X_all = np.array(feature_values_all).reshape(1, -1)
         
-        # Normalizar con el scaler
-        X_scaled = self.scaler.transform(X)
+        # PASO 2: Escalar con TODAS las features (el scaler espera 147)
+        X_scaled_all = self.scaler.transform(X_all)
         
-        return X_scaled
+        # PASO 3: Seleccionar solo las features que el modelo necesita
+        if self.selected_features and self.n_features_expected:
+            # Obtener índices de las features seleccionadas
+            selected_indices = []
+            for fname in self.selected_features:
+                if fname in self.feature_names:
+                    idx = self.feature_names.index(fname)
+                    selected_indices.append(idx)
+            
+            # Extraer solo esas columnas
+            X_final = X_scaled_all[:, selected_indices]
+            
+            if self.total_predictions == 0:  # Solo mostrar una vez
+                print(f"   ℹ️  Pipeline: {len(self.feature_names)} features → scaler → {len(selected_indices)} features seleccionadas")
+        
+        elif self.n_features_expected and X_scaled_all.shape[1] > self.n_features_expected:
+            # Tomar las primeras N features escaladas
+            X_final = X_scaled_all[:, :self.n_features_expected]
+            
+            if self.total_predictions == 0:  # Solo mostrar una vez
+                print(f"   ℹ️  Pipeline: {X_scaled_all.shape[1]} features → scaler → primeras {self.n_features_expected} features")
+        else:
+            # Usar todas las features escaladas
+            X_final = X_scaled_all
+        
+        # Verificar dimensiones finales
+        if self.n_features_expected and X_final.shape[1] != self.n_features_expected:
+            raise ValueError(
+                f"Feature mismatch: modelo espera {self.n_features_expected} features, "
+                f"pero después del pipeline hay {X_final.shape[1]}"
+            )
+        
+        return X_final
     
     def predict(self, features_dict: Dict[str, float], 
                 use_smoothing: bool = True) -> Tuple[str, float, Dict[str, float]]:
