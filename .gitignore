@@ -1,6 +1,8 @@
 # Entorno Virtual de Python
 venv/
-venv311/
+venv311/# Eliminar del historial de Git (sin borrar del disco)
+git rm -r --cached venv311
+git commit -m "Remove venv311 from git tracking"
 env/
 env311/
 ENV/
