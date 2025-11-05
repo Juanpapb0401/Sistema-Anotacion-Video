@@ -1,9 +1,10 @@
 # Entorno Virtual de Python
 venv/
+venv311/
 env/
+env311/
 ENV/
 .venv/
-env311/
 
 # Videos (archivos grandes)
 Entrega1/data/raw_videos
