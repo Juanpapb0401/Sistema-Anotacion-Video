@@ -30,7 +30,7 @@ MODELS_PATH = "../models"
 
 def load_prepared_data():
     """Carga los datos preparados"""
-    print(" Cargando datos preparados...")
+    print(" Cargando datos preparados para poder entrenar...")
     
     data_path = Path(DATA_PATH)
     
