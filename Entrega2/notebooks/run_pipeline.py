@@ -10,7 +10,7 @@ from pathlib import Path
 def run_script(script_name, description):
     """Ejecuta un script de Python y maneja errores"""
     print("\n" + "="*80)
-    print(f"🚀 {description}")
+    print(f" {description}")
     print("="*80 + "\n")
     
     try:
@@ -20,14 +20,14 @@ def run_script(script_name, description):
             check=True,
             text=True
         )
-        print(f"\n✅ {description} - COMPLETADO\n")
+        print(f"\n {description} - COMPLETADO\n")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"\n❌ Error en {description}")
+        print(f"\n Error en {description}")
         print(f"Código de error: {e.returncode}")
         return False
     except FileNotFoundError:
-        print(f"\n❌ No se encontró el script: {script_name}")
+        print(f"\n No se encontró el script: {script_name}")
         return False
 
 
@@ -54,16 +54,16 @@ def main():
         if run_script(script, description):
             success_count += 1
         else:
-            print(f"\n⚠️  Pipeline interrumpido en: {description}")
+            print(f"\n️  Pipeline interrumpido en: {description}")
             print("Por favor, revisa los errores antes de continuar.\n")
             sys.exit(1)
     
     print("\n" + "="*80)
-    print(f"✅ PIPELINE COMPLETADO: {success_count}/{total_scripts} scripts ejecutados con éxito")
+    print(f" PIPELINE COMPLETADO: {success_count}/{total_scripts} scripts ejecutados con éxito")
     print("="*80)
     
     print("""
-    📁 Archivos generados:
+     Archivos generados:
        - data/labeled_dataset_complete.csv
        - data/labeled_dataset_main.csv
        - data/train.csv, validation.csv, test.csv
@@ -77,14 +77,14 @@ def main():
        - models/*.pkl (todos los modelos)
        - reports/figures/*.png (todas las visualizaciones)
     
-    📊 Pipeline completado exitosamente!
-       ✅ Datos integrados y preparados
-       ✅ Análisis exploratorio realizado
-       ✅ Modelos entrenados y optimizados
-       ✅ Evaluación completa en conjunto de test
-       ✅ Mejor modelo seleccionado y guardado
+     Pipeline completado exitosamente!
+        Datos integrados y preparados
+        Análisis exploratorio realizado
+        Modelos entrenados y optimizados
+        Evaluación completa en conjunto de test
+        Mejor modelo seleccionado y guardado
     
-    🎯 Próximos pasos:
+     Próximos pasos:
        1. Revisar reportes de evaluación
        2. Analizar matrices de confusión
        3. Preparar documento final de Entrega 2

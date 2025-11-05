@@ -1,16 +1,16 @@
-# 📋 Instrucciones para Integrar Videos del Otro Grupo
+#  Instrucciones para Integrar Videos del Otro Grupo
 
-## 🎯 Objetivo
+##  Objetivo
 Integrar los videos etiquetados del otro grupo al dataset de entrenamiento para mejorar el rendimiento del modelo.
 
-## ✅ Pasos Completados
-1. ✅ **JSON separado por video**: Modificado el script `split_json_by_video.py`
-2. ✅ **Configuración actualizada**: Añadidas las variantes de etiquetas del otro grupo en `config.py`
-3. ✅ **Script de integración actualizado**: `01_integrate_labels.py` ahora puede procesar videos del otro grupo
+##  Pasos Completados
+1.  **JSON separado por video**: Modificado el script `split_json_by_video.py`
+2.  **Configuración actualizada**: Añadidas las variantes de etiquetas del otro grupo en `config.py`
+3.  **Script de integración actualizado**: `01_integrate_labels.py` ahora puede procesar videos del otro grupo
 
 ---
 
-## 🚀 Pasos Pendientes
+##  Pasos Pendientes
 
 ### Paso 1: Separar el JSON Grande
 ```bash
@@ -26,7 +26,7 @@ python split_json_by_video.py
 
 ### Paso 2: Extraer Features de los Videos del Otro Grupo
 
-**⚠️ IMPORTANTE**: Los videos del otro grupo están en:
+**️ IMPORTANTE**: Los videos del otro grupo están en:
 ```
 Entrega1/data/raw_videos_otro_grupo/
 ```
@@ -65,8 +65,8 @@ Mismo formato que tus features actuales (frame, nose_x, nose_y, ..., todas las c
 ### Paso 3: Ejecutar la Integración de Etiquetas
 
 Una vez que tengas:
-1. ✅ Los JSON individuales en `Videos/JSON_otro_grupo/individual_videos/`
-2. ✅ Los CSV de features en `Entrega1/data/03_features/`
+1.  Los JSON individuales en `Videos/JSON_otro_grupo/individual_videos/`
+2.  Los CSV de features en `Entrega1/data/03_features/`
 
 Ejecuta:
 
@@ -77,14 +77,14 @@ python 01_integrate_labels.py
 
 ---
 
-## 📊 Resultado Esperado
+##  Resultado Esperado
 
 Después de ejecutar `01_integrate_labels.py`, deberías ver:
 
 ```
-🚀 Iniciando integración de etiquetas
+ Iniciando integración de etiquetas
 
-🔄 Procesando videos y etiquetas...
+ Procesando videos y etiquetas...
 
 📹 Procesando: Joshua
   Videos normales: 100%|████████████| 10/10
@@ -105,19 +105,19 @@ Después de ejecutar `01_integrate_labels.py`, deberías ver:
 📦 INTENTANDO INTEGRAR VIDEOS DEL OTRO GRUPO
 ============================================================
 
-🔄 Procesando videos del otro grupo...
+ Procesando videos del otro grupo...
 
 📹 Procesando: OtroGrupo
   Videos: 100%|████████████| 22/22
 
-✅ Videos del otro grupo procesados: 22
+ Videos del otro grupo procesados: 22
    Frames adicionales: ~35,000
 
-✅ Dataset completo COMBINADO guardado: ../data/labeled_dataset_complete.csv
-✅ Dataset principal COMBINADO guardado: ../data/labeled_dataset_main.csv
+ Dataset completo COMBINADO guardado: ../data/labeled_dataset_complete.csv
+ Dataset principal COMBINADO guardado: ../data/labeled_dataset_main.csv
 
 ============================================================
-📊 ESTADÍSTICAS DE INTEGRACIÓN
+ ESTADÍSTICAS DE INTEGRACIÓN
 ============================================================
 
 📹 Videos procesados: 64 (42 originales + 22 del otro grupo)
@@ -134,7 +134,7 @@ Después de ejecutar `01_integrate_labels.py`, deberías ver:
 
 ---
 
-## 🔍 Verificación
+##  Verificación
 
 ### Verificar que los datos se integraron correctamente:
 
@@ -154,7 +154,7 @@ print(df['label'].value_counts())
 
 ---
 
-## ⚠️ Problemas Comunes
+## ️ Problemas Comunes
 
 ### Problema 1: "No se encontró features CSV"
 **Solución**: Ejecuta el paso 2 primero (extraer features con MediaPipe)
@@ -172,18 +172,18 @@ print(df['label'].value_counts())
 
 ---
 
-## 📈 Beneficios Esperados
+##  Beneficios Esperados
 
 Con 22 videos adicionales (~35,000 frames más):
 
-✅ **Más datos de entrenamiento** → mejor generalización del modelo
-✅ **Variabilidad adicional** → modelo más robusto
-✅ **Mejor balance de clases** → predicciones más equilibradas
-✅ **Personas diferentes** → menos overfitting a individuos específicos
+ **Más datos de entrenamiento** → mejor generalización del modelo
+ **Variabilidad adicional** → modelo más robusto
+ **Mejor balance de clases** → predicciones más equilibradas
+ **Personas diferentes** → menos overfitting a individuos específicos
 
 ---
 
-## 📝 Notas Adicionales
+##  Notas Adicionales
 
 - El script detecta automáticamente si hay videos del otro grupo
 - Si faltan features, solo procesará los videos originales (sin error)

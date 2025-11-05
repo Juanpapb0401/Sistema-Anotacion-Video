@@ -5,15 +5,15 @@ Sistema de Anotación de Video - Entrega 2
 
 Fecha: 2025-10-30 06:04:05
 
-📊 RESUMEN COMPARATIVO
+ RESUMEN COMPARATIVO
 --------------------------------------------------------------------------------
 Modelo               Accuracy     Precision    Recall       F1-Score    
 --------------------------------------------------------------------------------
-🏆 XGBoost            0.7887       0.7917       0.7887       0.7896      
+ XGBoost            0.7887       0.7917       0.7887       0.7896      
    Random Forest      0.7864       0.7979       0.7864       0.7895      
    SVM                0.6429       0.6642       0.6429       0.6494      
 
-🔍 DETALLES POR MODELO
+ DETALLES POR MODELO
 --------------------------------------------------------------------------------
 
 SVM:
@@ -61,7 +61,7 @@ XGBoost:
     ponerse_de_pie            0.7491       0.8047       0.7759      
     sentarse                  0.6354       0.6497       0.6425      
 
-🏆 MODELO RECOMENDADO
+ MODELO RECOMENDADO
 --------------------------------------------------------------------------------
 Modelo: XGBoost
 F1-Score: 0.7896
@@ -70,7 +70,7 @@ Accuracy: 0.7887
 Este modelo ha demostrado el mejor desempeño en el conjunto de test
 y está disponible como 'best_model.pkl'
 
-⚠️  ANÁLISIS DE ERRORES
+️  ANÁLISIS DE ERRORES
 --------------------------------------------------------------------------------
 Confusiones más comunes (verdadero → predicho):
   girar → caminar_de_regreso: 72 muestras

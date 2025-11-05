@@ -21,7 +21,7 @@ try:
     XGBOOST_AVAILABLE = True
 except ImportError:
     XGBOOST_AVAILABLE = False
-    print("⚠️  XGBoost no disponible. Solo se entrenarán SVM y Random Forest.")
+    print("️  XGBoost no disponible. Solo se entrenarán SVM y Random Forest.")
 
 # Rutas
 DATA_PATH = "../data"
@@ -30,7 +30,7 @@ MODELS_PATH = "../models"
 
 def load_prepared_data():
     """Carga los datos preparados"""
-    print("📂 Cargando datos preparados...")
+    print(" Cargando datos preparados...")
     
     data_path = Path(DATA_PATH)
     
@@ -51,7 +51,7 @@ def load_prepared_data():
     models_path = Path(MODELS_PATH)
     label_encoder = joblib.load(models_path / "label_encoder.pkl")
     
-    print(f"✅ Datos cargados:")
+    print(f" Datos cargados:")
     print(f"   Train: {len(X_train):,} muestras, {X_train.shape[1]} features")
     print(f"   Validation: {len(X_val):,} muestras")
     print(f"   Clases: {label_encoder.classes_.tolist()}")
@@ -64,7 +64,7 @@ def train_svm(X_train, y_train, X_val, y_val):
     Entrena un modelo SVM con ajuste de hiperparámetros
     """
     print("\n" + "="*80)
-    print("🤖 Entrenando SVM (Support Vector Machine)")
+    print(" Entrenando SVM (Support Vector Machine)")
     print("="*80)
     
     # Definir espacio de búsqueda de hiperparámetros
@@ -74,7 +74,7 @@ def train_svm(X_train, y_train, X_val, y_val):
         'gamma': ['scale', 'auto']
     }
     
-    print("🔍 Búsqueda de hiperparámetros con GridSearchCV...")
+    print(" Búsqueda de hiperparámetros con GridSearchCV...")
     print(f"   Espacio de búsqueda: {len(param_grid['C']) * len(param_grid['kernel']) * len(param_grid['gamma'])} combinaciones")
     
     start_time = time.time()
@@ -97,7 +97,7 @@ def train_svm(X_train, y_train, X_val, y_val):
     # Mejor modelo
     best_model = grid_search.best_estimator_
     
-    print(f"\n✅ Entrenamiento completado en {training_time:.2f}s")
+    print(f"\n Entrenamiento completado en {training_time:.2f}s")
     print(f"   Mejores parámetros: {grid_search.best_params_}")
     print(f"   Mejor score CV: {grid_search.best_score_:.4f}")
     
@@ -106,7 +106,7 @@ def train_svm(X_train, y_train, X_val, y_val):
     val_accuracy = accuracy_score(y_val, y_val_pred)
     val_f1 = f1_score(y_val, y_val_pred, average='weighted')
     
-    print(f"\n📊 Resultados en Validación:")
+    print(f"\n Resultados en Validación:")
     print(f"   Accuracy: {val_accuracy:.4f}")
     print(f"   F1-Score: {val_f1:.4f}")
     
@@ -138,7 +138,7 @@ def train_random_forest(X_train, y_train, X_val, y_val):
         'min_samples_leaf': [1, 2, 4]
     }
     
-    print("🔍 Búsqueda de hiperparámetros con GridSearchCV...")
+    print(" Búsqueda de hiperparámetros con GridSearchCV...")
     print(f"   Espacio de búsqueda: {len(param_grid['n_estimators']) * len(param_grid['max_depth']) * len(param_grid['min_samples_split']) * len(param_grid['min_samples_leaf'])} combinaciones")
     
     start_time = time.time()
@@ -161,7 +161,7 @@ def train_random_forest(X_train, y_train, X_val, y_val):
     # Mejor modelo
     best_model = grid_search.best_estimator_
     
-    print(f"\n✅ Entrenamiento completado en {training_time:.2f}s")
+    print(f"\n Entrenamiento completado en {training_time:.2f}s")
     print(f"   Mejores parámetros: {grid_search.best_params_}")
     print(f"   Mejor score CV: {grid_search.best_score_:.4f}")
     
@@ -170,7 +170,7 @@ def train_random_forest(X_train, y_train, X_val, y_val):
     val_accuracy = accuracy_score(y_val, y_val_pred)
     val_f1 = f1_score(y_val, y_val_pred, average='weighted')
     
-    print(f"\n📊 Resultados en Validación:")
+    print(f"\n Resultados en Validación:")
     print(f"   Accuracy: {val_accuracy:.4f}")
     print(f"   F1-Score: {val_f1:.4f}")
     
@@ -191,7 +191,7 @@ def train_xgboost(X_train, y_train, X_val, y_val):
     Entrena un modelo XGBoost con ajuste de hiperparámetros
     """
     print("\n" + "="*80)
-    print("🚀 Entrenando XGBoost")
+    print(" Entrenando XGBoost")
     print("="*80)
     
     # Definir espacio de búsqueda de hiperparámetros
@@ -203,7 +203,7 @@ def train_xgboost(X_train, y_train, X_val, y_val):
         'colsample_bytree': [0.8, 1.0]
     }
     
-    print("🔍 Búsqueda de hiperparámetros con GridSearchCV...")
+    print(" Búsqueda de hiperparámetros con GridSearchCV...")
     print(f"   Espacio de búsqueda: {len(param_grid['n_estimators']) * len(param_grid['max_depth']) * len(param_grid['learning_rate']) * len(param_grid['subsample']) * len(param_grid['colsample_bytree'])} combinaciones")
     
     start_time = time.time()
@@ -232,7 +232,7 @@ def train_xgboost(X_train, y_train, X_val, y_val):
     # Mejor modelo
     best_model = grid_search.best_estimator_
     
-    print(f"\n✅ Entrenamiento completado en {training_time:.2f}s")
+    print(f"\n Entrenamiento completado en {training_time:.2f}s")
     print(f"   Mejores parámetros: {grid_search.best_params_}")
     print(f"   Mejor score CV: {grid_search.best_score_:.4f}")
     
@@ -241,7 +241,7 @@ def train_xgboost(X_train, y_train, X_val, y_val):
     val_accuracy = accuracy_score(y_val, y_val_pred)
     val_f1 = f1_score(y_val, y_val_pred, average='weighted')
     
-    print(f"\n📊 Resultados en Validación:")
+    print(f"\n Resultados en Validación:")
     print(f"   Accuracy: {val_accuracy:.4f}")
     print(f"   F1-Score: {val_f1:.4f}")
     
@@ -261,7 +261,7 @@ def save_models_and_results(models_dict, results_list):
     """
     Guarda los modelos entrenados y los resultados
     """
-    print("\n💾 Guardando modelos y resultados...")
+    print("\n Guardando modelos y resultados...")
     
     models_path = Path(MODELS_PATH)
     models_path.mkdir(parents=True, exist_ok=True)
@@ -270,7 +270,7 @@ def save_models_and_results(models_dict, results_list):
     for model_name, model in models_dict.items():
         model_file = models_path / f"{model_name.lower().replace(' ', '_')}_model.pkl"
         joblib.dump(model, model_file)
-        print(f"   ✅ {model_name} guardado: {model_file.name}")
+        print(f"    {model_name} guardado: {model_file.name}")
     
     # Identificar el mejor modelo
     best_model_info = max(results_list, key=lambda x: x['val_f1_score'])
@@ -279,8 +279,8 @@ def save_models_and_results(models_dict, results_list):
     
     # Guardar el mejor modelo por separado
     joblib.dump(best_model, models_path / "best_model.pkl")
-    print(f"\n   🏆 Mejor modelo: {best_model_name} (F1={best_model_info['val_f1_score']:.4f})")
-    print(f"   ✅ Guardado como: best_model.pkl")
+    print(f"\n    Mejor modelo: {best_model_name} (F1={best_model_info['val_f1_score']:.4f})")
+    print(f"    Guardado como: best_model.pkl")
     
     # Guardar resultados en JSON
     training_results = {
@@ -297,7 +297,7 @@ def save_models_and_results(models_dict, results_list):
     with open(results_file, 'w') as f:
         json.dump(training_results, f, indent=2)
     
-    print(f"   ✅ Resultados guardados: training_results.json")
+    print(f"    Resultados guardados: training_results.json")
     
     return best_model_name, best_model_info
 
@@ -306,7 +306,7 @@ def generate_training_report(results_list, best_model_name, best_model_info):
     """
     Genera un reporte de texto con los resultados del entrenamiento
     """
-    print("\n📝 Generando reporte de entrenamiento...")
+    print("\n Generando reporte de entrenamiento...")
     
     report_lines = []
     
@@ -319,7 +319,7 @@ def generate_training_report(results_list, best_model_name, best_model_info):
     report_lines.append("")
     
     # Resumen de todos los modelos
-    report_lines.append("📊 RESUMEN DE MODELOS")
+    report_lines.append(" RESUMEN DE MODELOS")
     report_lines.append("-" * 80)
     report_lines.append(f"{'Modelo':<20} {'Accuracy':<12} {'F1-Score':<12} {'Tiempo (s)':<12}")
     report_lines.append("-" * 80)
@@ -330,13 +330,13 @@ def generate_training_report(results_list, best_model_name, best_model_info):
         f1 = result['val_f1_score']
         time_taken = result['training_time']
         
-        marker = "🏆" if model_name == best_model_name else "  "
+        marker = "" if model_name == best_model_name else "  "
         report_lines.append(f"{marker} {model_name:<18} {accuracy:<12.4f} {f1:<12.4f} {time_taken:<12.2f}")
     
     report_lines.append("")
     
     # Detalles de cada modelo
-    report_lines.append("🔍 DETALLES DE MODELOS")
+    report_lines.append(" DETALLES DE MODELOS")
     report_lines.append("-" * 80)
     
     for result in results_list:
@@ -351,7 +351,7 @@ def generate_training_report(results_list, best_model_name, best_model_info):
     
     # Mejor modelo
     report_lines.append("")
-    report_lines.append("🏆 MEJOR MODELO")
+    report_lines.append(" MEJOR MODELO")
     report_lines.append("-" * 80)
     report_lines.append(f"Modelo seleccionado: {best_model_name}")
     report_lines.append(f"F1-Score: {best_model_info['val_f1_score']:.4f}")
@@ -368,14 +368,14 @@ def generate_training_report(results_list, best_model_name, best_model_info):
     with open(report_file, 'w', encoding='utf-8') as f:
         f.write(report_text)
     
-    print(f"✅ Reporte guardado: training_report.txt")
+    print(f" Reporte guardado: training_report.txt")
     
     return report_text
 
 
 def main():
     """Función principal"""
-    print("🚀 Iniciando Entrenamiento de Modelos\n")
+    print(" Iniciando Entrenamiento de Modelos\n")
     print("=" * 80)
     
     # 1. Cargar datos preparados
@@ -401,7 +401,7 @@ def main():
         models_dict['XGBoost'] = xgb_model
         results_list.append(xgb_results)
     else:
-        print("\n⚠️  Saltando entrenamiento de XGBoost (no disponible)")
+        print("\n️  Saltando entrenamiento de XGBoost (no disponible)")
     
     # 3. Guardar modelos y resultados
     best_model_name, best_model_info = save_models_and_results(models_dict, results_list)
@@ -412,8 +412,8 @@ def main():
     print("\n" + "=" * 80)
     print(report)
     
-    print("\n✅ Entrenamiento de modelos completado!")
-    print(f"📁 Modelos guardados en: {MODELS_PATH}/")
+    print("\n Entrenamiento de modelos completado!")
+    print(f" Modelos guardados en: {MODELS_PATH}/")
     print("   - svm_model.pkl")
     print("   - random_forest_model.pkl")
     if XGBOOST_AVAILABLE:

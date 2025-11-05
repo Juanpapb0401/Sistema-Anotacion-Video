@@ -40,13 +40,13 @@ def setup_directories():
     
     if not input_path.exists():
         input_path.mkdir(parents=True)
-        print(f"⚠️  Carpeta '{INPUT_PATH}' creada.")
+        print(f"️  Carpeta '{INPUT_PATH}' creada.")
         print(f"   Por favor, agrega los videos del otro grupo ahí.")
         return False
     
     if not output_path.exists():
         output_path.mkdir(parents=True)
-        print(f"✅ Carpeta '{OUTPUT_PATH}' creada.")
+        print(f" Carpeta '{OUTPUT_PATH}' creada.")
     
     return True
 
@@ -156,7 +156,7 @@ def process_other_group_videos():
     
     # Verificar directorios
     if not setup_directories():
-        print("\n❌ No se puede continuar sin los videos.")
+        print("\n No se puede continuar sin los videos.")
         return
     
     input_path = Path(INPUT_PATH)
@@ -170,14 +170,14 @@ def process_other_group_videos():
         list(input_path.glob('*.mp3'))  # Incluir .mp3 que pueden ser videos
     )
     if not video_files:
-        print(f"❌ No se encontraron videos en '{INPUT_PATH}'")
+        print(f" No se encontraron videos en '{INPUT_PATH}'")
         print("   Formatos soportados: .mp4, .mov, .avi, .mp3")
         return
     
-    print(f"📁 Directorio de entrada: {INPUT_PATH}")
-    print(f"📁 Directorio de salida: {OUTPUT_PATH}")
+    print(f" Directorio de entrada: {INPUT_PATH}")
+    print(f" Directorio de salida: {OUTPUT_PATH}")
     print(f"🎥 Videos encontrados: {len(video_files)}")
-    print(f"📋 Videos esperados: {len(EXPECTED_VIDEOS)}")
+    print(f" Videos esperados: {len(EXPECTED_VIDEOS)}")
     print()
     
     # Inicializar MediaPipe Pose
@@ -189,7 +189,7 @@ def process_other_group_videos():
         min_detection_confidence=0.5,
         min_tracking_confidence=0.5
     )
-    print("✅ MediaPipe listo\n")
+    print(" MediaPipe listo\n")
     
     # Estadísticas
     stats = {
@@ -201,7 +201,7 @@ def process_other_group_videos():
     }
     
     # Procesar cada video esperado
-    print("🔄 Procesando videos...\n")
+    print(" Procesando videos...\n")
     
     for video_name in EXPECTED_VIDEOS:
         csv_path = output_path / f"{video_name}.csv"
@@ -216,7 +216,7 @@ def process_other_group_videos():
         video_path = find_video_file(video_name, input_path)
         
         if not video_path:
-            print(f"❌ {video_name}: Video no encontrado")
+            print(f" {video_name}: Video no encontrado")
             stats['no_encontrados'].append(video_name)
             stats['errores'] += 1
             continue
@@ -229,11 +229,11 @@ def process_other_group_videos():
         )
         
         if success:
-            print(f"✅ {video_name}: Guardado → {csv_path.name} ({message})")
+            print(f" {video_name}: Guardado → {csv_path.name} ({message})")
             stats['procesados'] += 1
             stats['total_frames'] += num_frames
         else:
-            print(f"❌ {video_name}: Error → {message}")
+            print(f" {video_name}: Error → {message}")
             stats['errores'] += 1
         
         print()
@@ -243,15 +243,15 @@ def process_other_group_videos():
     
     # Mostrar resumen
     print("="*70)
-    print("📊 RESUMEN DE EXTRACCIÓN")
+    print(" RESUMEN DE EXTRACCIÓN")
     print("="*70)
-    print(f"✅ Videos procesados exitosamente: {stats['procesados']}")
+    print(f" Videos procesados exitosamente: {stats['procesados']}")
     print(f"⏭️  Videos saltados (ya procesados): {stats['saltados']}")
-    print(f"❌ Videos con errores: {stats['errores']}")
+    print(f" Videos con errores: {stats['errores']}")
     print(f"🎞️  Total de frames extraídos: {stats['total_frames']:,}")
     
     if stats['no_encontrados']:
-        print(f"\n⚠️  Videos no encontrados ({len(stats['no_encontrados'])}):")
+        print(f"\n️  Videos no encontrados ({len(stats['no_encontrados'])}):")
         for video in stats['no_encontrados']:
             print(f"   - {video}")
         print("\n   Verifica que los nombres de los archivos coincidan.")
@@ -259,13 +259,13 @@ def process_other_group_videos():
     print("\n" + "="*70)
     
     if stats['procesados'] > 0:
-        print("✅ Extracción completada!")
-        print(f"\n📁 Archivos CSV guardados en: {OUTPUT_PATH}/")
-        print("\n🔄 Siguiente paso:")
+        print(" Extracción completada!")
+        print(f"\n Archivos CSV guardados en: {OUTPUT_PATH}/")
+        print("\n Siguiente paso:")
         print("   cd ../../Entrega2/notebooks")
         print("   python 01_integrate_labels.py")
     else:
-        print("⚠️  No se procesó ningún video nuevo.")
+        print("️  No se procesó ningún video nuevo.")
     
     print("="*70)
 

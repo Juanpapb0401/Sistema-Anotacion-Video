@@ -22,7 +22,7 @@ for video in videos:
     inner_id = video.get('inner_id')
     
     if inner_id is None:
-        print(f"⚠️ Video sin inner_id encontrado, saltando...")
+        print(f"️ Video sin inner_id encontrado, saltando...")
         continue
     
     # Nombre del archivo de salida

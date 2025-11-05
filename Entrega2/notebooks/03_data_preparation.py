@@ -22,7 +22,7 @@ def load_data():
     data_path = Path(DATA_PATH)
     df = pd.read_csv(data_path / "labeled_dataset_main.csv")
     
-    print(f"📂 Dataset cargado: {len(df):,} frames")
+    print(f" Dataset cargado: {len(df):,} frames")
     print(f"   Clases: {df['label'].unique().tolist()}")
     print(f"   Personas: {df['person'].unique().tolist()}")
     
@@ -33,7 +33,7 @@ def create_temporal_features(df):
     """
     Crea features temporales (velocidades y aceleraciones)
     """
-    print("\n🔄 Creando features temporales...")
+    print("\n Creando features temporales...")
     
     # Crear copia
     df = df.copy()
@@ -55,7 +55,7 @@ def create_temporal_features(df):
     # Rellenar NaN en las primeras filas de cada video con 0
     df = df.fillna(0)
     
-    print(f"✅ Features temporales creadas")
+    print(f" Features temporales creadas")
     print(f"   Total de features: {len([col for col in df.columns if col not in ['frame', 'label_raw', 'label', 'person', 'video_id', 'video_speed']])}")
     
     return df
@@ -65,7 +65,7 @@ def prepare_features_and_labels(df):
     """
     Separa features y labels, codifica labels
     """
-    print("\n📊 Preparando features y labels...")
+    print("\n Preparando features y labels...")
     
     # Eliminar frames sin etiqueta
     df = df.dropna(subset=['label'])
@@ -87,7 +87,7 @@ def prepare_features_and_labels(df):
     # Metadata (persona, video_id)
     metadata = df[['person', 'video_id', 'video_speed']]
     
-    print(f"✅ Features: {X.shape[1]} columnas")
+    print(f" Features: {X.shape[1]} columnas")
     print(f"   Labels: {len(label_encoder.classes_)} clases")
     print(f"   Muestras: {len(X):,}")
     
@@ -126,7 +126,7 @@ def split_data(X, y, metadata, test_size=0.15, val_size=0.15, random_state=42):
         random_state=random_state
     )
     
-    print(f"✅ División completada:")
+    print(f" División completada:")
     print(f"   Train: {len(X_train):,} muestras ({len(X_train)/len(X)*100:.1f}%)")
     print(f"   Validation: {len(X_val):,} muestras ({len(X_val)/len(X)*100:.1f}%)")
     print(f"   Test: {len(X_test):,} muestras ({len(X_test)/len(X)*100:.1f}%)")
@@ -147,7 +147,7 @@ def normalize_features(X_train, X_val, X_test):
     X_val_scaled = scaler.transform(X_val)
     X_test_scaled = scaler.transform(X_test)
     
-    print("✅ Normalización completada")
+    print(" Normalización completada")
     print(f"   Media: {X_train_scaled.mean():.4f}")
     print(f"   Std: {X_train_scaled.std():.4f}")
     
@@ -158,7 +158,7 @@ def balance_classes(X_train, y_train, random_state=42):
     """
     Balancea las clases usando SMOTE
     """
-    print("\n⚖️  Balanceando clases con SMOTE...")
+    print("\n️  Balanceando clases con SMOTE...")
     
     # Contar muestras antes
     unique, counts = np.unique(y_train, return_counts=True)
@@ -176,7 +176,7 @@ def balance_classes(X_train, y_train, random_state=42):
     for label, count in zip(unique, counts):
         print(f"   - Clase {label}: {count:,}")
     
-    print(f"\n✅ Balanceo completado")
+    print(f"\n Balanceo completado")
     print(f"   Muestras antes: {len(X_train):,}")
     print(f"   Muestras después: {len(X_train_balanced):,}")
     print(f"   Incremento: {(len(X_train_balanced) - len(X_train)) / len(X_train) * 100:.1f}%")
@@ -190,7 +190,7 @@ def save_processed_data(X_train, X_val, X_test, y_train, y_val, y_test,
     """
     Guarda los datos procesados
     """
-    print("\n💾 Guardando datos procesados...")
+    print("\n Guardando datos procesados...")
     
     output_path = Path(OUTPUT_PATH)
     models_path = Path(MODELS_PATH)
@@ -214,7 +214,7 @@ def save_processed_data(X_train, X_val, X_test, y_train, y_val, y_test,
     val_df.to_csv(output_path / "validation.csv", index=False)
     test_df.to_csv(output_path / "test.csv", index=False)
     
-    print(f"✅ Datasets guardados:")
+    print(f" Datasets guardados:")
     print(f"   - train.csv")
     print(f"   - validation.csv")
     print(f"   - test.csv")
@@ -223,7 +223,7 @@ def save_processed_data(X_train, X_val, X_test, y_train, y_val, y_test,
     joblib.dump(label_encoder, models_path / "label_encoder.pkl")
     joblib.dump(scaler, models_path / "scaler.pkl")
     
-    print(f"\n✅ Objetos de preprocesamiento guardados:")
+    print(f"\n Objetos de preprocesamiento guardados:")
     print(f"   - label_encoder.pkl")
     print(f"   - scaler.pkl")
     
@@ -242,7 +242,7 @@ def save_processed_data(X_train, X_val, X_test, y_train, y_val, y_test,
     with open(output_path / "preparation_info.json", 'w') as f:
         json.dump(prep_info, f, indent=2)
     
-    print(f"✅ Información de preparación guardada")
+    print(f" Información de preparación guardada")
 
 
 def generate_preparation_report(df_original, X_train, X_val, X_test, 
@@ -250,7 +250,7 @@ def generate_preparation_report(df_original, X_train, X_val, X_test,
     """
     Genera un reporte de texto con información de la preparación
     """
-    print("\n📝 Generando reporte de preparación...")
+    print("\n Generando reporte de preparación...")
     
     report_lines = []
     
@@ -261,7 +261,7 @@ def generate_preparation_report(df_original, X_train, X_val, X_test,
     report_lines.append("")
     
     # Información general
-    report_lines.append("📊 INFORMACIÓN GENERAL")
+    report_lines.append(" INFORMACIÓN GENERAL")
     report_lines.append("-" * 80)
     report_lines.append(f"Dataset original: {len(df_original):,} frames")
     report_lines.append(f"Features extraídas: {X_train.shape[1]}")
@@ -297,14 +297,14 @@ def generate_preparation_report(df_original, X_train, X_val, X_test,
     with open(report_file, 'w', encoding='utf-8') as f:
         f.write(report_text)
     
-    print(f"✅ Reporte guardado: preparation_report.txt")
+    print(f" Reporte guardado: preparation_report.txt")
     
     return report_text
 
 
 def main():
     """Función principal"""
-    print("🚀 Iniciando Preparación de Datos\n")
+    print(" Iniciando Preparación de Datos\n")
     print("=" * 80)
     
     # 1. Cargar datos
@@ -346,14 +346,14 @@ def main():
     print("\n" + "=" * 80)
     print(report)
     
-    print("\n✅ Preparación de datos completada!")
-    print(f"📁 Archivos generados en: {OUTPUT_PATH}/")
+    print("\n Preparación de datos completada!")
+    print(f" Archivos generados en: {OUTPUT_PATH}/")
     print("   - train.csv")
     print("   - validation.csv")
     print("   - test.csv")
     print("   - preparation_info.json")
     print("   - preparation_report.txt")
-    print(f"\n📁 Objetos guardados en: {MODELS_PATH}/")
+    print(f"\n Objetos guardados en: {MODELS_PATH}/")
     print("   - label_encoder.pkl")
     print("   - scaler.pkl")
 

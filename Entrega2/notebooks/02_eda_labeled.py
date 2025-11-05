@@ -63,7 +63,7 @@ def plot_class_distribution(df, save_path):
     
     plt.tight_layout()
     plt.savefig(save_path / '01_class_distribution.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Gráfico guardado: 01_class_distribution.png")
+    print(f" Gráfico guardado: 01_class_distribution.png")
     plt.close()
 
 
@@ -90,7 +90,7 @@ def plot_distribution_by_person(df, save_path):
     
     plt.tight_layout()
     plt.savefig(save_path / '02_distribution_by_person.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Gráfico guardado: 02_distribution_by_person.png")
+    print(f" Gráfico guardado: 02_distribution_by_person.png")
     plt.close()
 
 
@@ -115,7 +115,7 @@ def plot_speed_comparison(df, save_path):
     
     plt.tight_layout()
     plt.savefig(save_path / '03_speed_comparison.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Gráfico guardado: 03_speed_comparison.png")
+    print(f" Gráfico guardado: 03_speed_comparison.png")
     plt.close()
 
 
@@ -139,7 +139,7 @@ def plot_feature_distributions(df, save_path):
     
     plt.tight_layout()
     plt.savefig(save_path / '04_feature_distributions.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Gráfico guardado: 04_feature_distributions.png")
+    print(f" Gráfico guardado: 04_feature_distributions.png")
     plt.close()
 
 
@@ -162,7 +162,7 @@ def plot_feature_boxplots(df, save_path):
     plt.suptitle('Box Plots de Características por Clase', fontsize=16, fontweight='bold', y=1.02)
     plt.tight_layout()
     plt.savefig(save_path / '05_feature_boxplots.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Gráfico guardado: 05_feature_boxplots.png")
+    print(f" Gráfico guardado: 05_feature_boxplots.png")
     plt.close()
 
 
@@ -179,7 +179,7 @@ def plot_correlation_matrix(df, save_path):
     plt.title('Matriz de Correlación de Características', fontsize=16, fontweight='bold', pad=20)
     plt.tight_layout()
     plt.savefig(save_path / '06_correlation_matrix.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Gráfico guardado: 06_correlation_matrix.png")
+    print(f" Gráfico guardado: 06_correlation_matrix.png")
     plt.close()
 
 
@@ -219,7 +219,7 @@ def plot_temporal_analysis(df, save_path):
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
     plt.savefig(save_path / '07_temporal_analysis.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Gráfico guardado: 07_temporal_analysis.png")
+    print(f" Gráfico guardado: 07_temporal_analysis.png")
     plt.close()
     
     return df_durations
@@ -236,7 +236,7 @@ def generate_summary_report(df_complete, df_main, stats, df_durations, save_path
     report_lines.append("")
     
     # Información general
-    report_lines.append("📊 INFORMACIÓN GENERAL")
+    report_lines.append(" INFORMACIÓN GENERAL")
     report_lines.append("-" * 80)
     report_lines.append(f"Total de videos procesados: {stats['total_videos']}")
     report_lines.append(f"Total de frames: {stats['total_frames']:,}")
@@ -245,7 +245,7 @@ def generate_summary_report(df_complete, df_main, stats, df_durations, save_path
     report_lines.append("")
     
     # Distribución por persona
-    report_lines.append("👥 VIDEOS POR PERSONA")
+    report_lines.append(" VIDEOS POR PERSONA")
     report_lines.append("-" * 80)
     for person, count in stats['videos_by_person'].items():
         person_frames = len(df_main[df_main['person'] == person])
@@ -265,17 +265,17 @@ def generate_summary_report(df_complete, df_main, stats, df_durations, save_path
     max_count = class_counts.max()
     min_count = class_counts.min()
     imbalance_ratio = max_count / min_count
-    report_lines.append("⚖️  BALANCE DE CLASES")
+    report_lines.append("️  BALANCE DE CLASES")
     report_lines.append("-" * 80)
     report_lines.append(f"Clase más frecuente: {class_counts.idxmax()} ({max_count:,} frames)")
     report_lines.append(f"Clase menos frecuente: {class_counts.idxmin()} ({min_count:,} frames)")
     report_lines.append(f"Ratio de desbalance: {imbalance_ratio:.2f}x")
     if imbalance_ratio > 3:
-        report_lines.append("⚠️  ADVERTENCIA: Dataset desbalanceado. Considerar técnicas de balanceo.")
+        report_lines.append("️  ADVERTENCIA: Dataset desbalanceado. Considerar técnicas de balanceo.")
     report_lines.append("")
     
     # Duración de actividades
-    report_lines.append("⏱️  DURACIÓN PROMEDIO DE ACTIVIDADES (frames)")
+    report_lines.append("️  DURACIÓN PROMEDIO DE ACTIVIDADES (frames)")
     report_lines.append("-" * 80)
     avg_durations = df_durations.groupby('label')['duration'].agg(['mean', 'std', 'min', 'max'])
     for label in avg_durations.index:
@@ -337,28 +337,28 @@ def generate_summary_report(df_complete, df_main, stats, df_durations, save_path
     with open(report_file, 'w', encoding='utf-8') as f:
         f.write(report_text)
     
-    print(f"\n✅ Reporte guardado: EDA_report.txt")
+    print(f"\n Reporte guardado: EDA_report.txt")
     
     return report_text
 
 
 def main():
     """Función principal"""
-    print("🚀 Iniciando Análisis Exploratorio de Datos\n")
+    print(" Iniciando Análisis Exploratorio de Datos\n")
     
     # Crear carpeta de figuras
     figures_path = Path(FIGURES_PATH)
     figures_path.mkdir(parents=True, exist_ok=True)
     
     # Cargar datos
-    print("📂 Cargando datos...")
+    print(" Cargando datos...")
     df_complete, df_main, stats = load_data()
     print(f"   Dataset completo: {len(df_complete):,} frames")
     print(f"   Dataset principal: {len(df_main):,} frames")
     print()
     
     # Generar gráficos
-    print("📊 Generando gráficos...\n")
+    print(" Generando gráficos...\n")
     
     plot_class_distribution(df_main, figures_path)
     plot_distribution_by_person(df_main, figures_path)
@@ -369,14 +369,14 @@ def main():
     df_durations = plot_temporal_analysis(df_main, figures_path)
     
     # Generar reporte
-    print("\n📝 Generando reporte de texto...")
+    print("\n Generando reporte de texto...")
     report = generate_summary_report(df_complete, df_main, stats, df_durations, Path(DATA_PATH))
     
     print("\n" + "=" * 80)
     print(report)
     
-    print("\n✅ Análisis exploratorio completado!")
-    print(f"📁 Gráficos guardados en: {FIGURES_PATH}/")
+    print("\n Análisis exploratorio completado!")
+    print(f" Gráficos guardados en: {FIGURES_PATH}/")
     print(f"📄 Reporte guardado en: {DATA_PATH}/EDA_report.txt")
 
 

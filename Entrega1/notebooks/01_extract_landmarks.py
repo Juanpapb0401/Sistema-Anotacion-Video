@@ -61,7 +61,7 @@ for video_file in os.listdir(INPUT_PATH):
         print(f"  ✓ Landmarks guardados para '{video_file}' ({len(landmarks_data)} frames).")
         videos_procesados += 1
     else:
-        print(f"  ⚠ Advertencia: No se detectaron landmarks en '{video_file}'.")
+        print(f"   Advertencia: No se detectaron landmarks en '{video_file}'.")
 
 pose.close()
 print("\n" + "="*50)

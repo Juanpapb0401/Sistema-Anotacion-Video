@@ -32,7 +32,7 @@ FIGURES_PATH = "../reports/figures"
 
 def load_test_data():
     """Carga los datos de test"""
-    print("📂 Cargando datos de test...")
+    print(" Cargando datos de test...")
     
     data_path = Path(DATA_PATH)
     test_df = pd.read_csv(data_path / "test.csv")
@@ -43,7 +43,7 @@ def load_test_data():
     X_test = test_df[feature_cols].values
     y_test = test_df['label'].values
     
-    print(f"✅ Test set cargado: {len(X_test):,} muestras, {X_test.shape[1]} features")
+    print(f" Test set cargado: {len(X_test):,} muestras, {X_test.shape[1]} features")
     
     return X_test, y_test, test_df
 
@@ -66,7 +66,7 @@ def load_models():
     
     label_encoder = joblib.load(models_path / "label_encoder.pkl")
     
-    print(f"✅ {len(models)} modelos cargados")
+    print(f" {len(models)} modelos cargados")
     
     return models, label_encoder
 
@@ -76,7 +76,7 @@ def evaluate_model(model, model_name, X_test, y_test, label_encoder):
     Evalúa un modelo en el conjunto de test
     """
     print(f"\n{'='*80}")
-    print(f"📊 Evaluando: {model_name}")
+    print(f" Evaluando: {model_name}")
     print('='*80)
     
     # Predicciones
@@ -88,7 +88,7 @@ def evaluate_model(model, model_name, X_test, y_test, label_encoder):
     recall = recall_score(y_test, y_pred, average='weighted')
     f1 = f1_score(y_test, y_pred, average='weighted')
     
-    print(f"\n🎯 Métricas Generales:")
+    print(f"\n Métricas Generales:")
     print(f"   Accuracy:  {accuracy:.4f}")
     print(f"   Precision: {precision:.4f}")
     print(f"   Recall:    {recall:.4f}")
@@ -102,7 +102,7 @@ def evaluate_model(model, model_name, X_test, y_test, label_encoder):
         output_dict=True
     )
     
-    print(f"\n📋 Reporte por Clase:")
+    print(f"\n Reporte por Clase:")
     print(f"   {'Clase':<25} {'Precision':<12} {'Recall':<12} {'F1-Score':<12} {'Support':<10}")
     print(f"   {'-'*75}")
     
@@ -159,7 +159,7 @@ def plot_confusion_matrix(cm, class_names, model_name, save_path):
     
     filename = f"confusion_matrix_{model_name.lower().replace(' ', '_')}.png"
     plt.savefig(save_path / filename, dpi=300, bbox_inches='tight')
-    print(f"   ✅ Matriz de confusión guardada: {filename}")
+    print(f"    Matriz de confusión guardada: {filename}")
     plt.close()
 
 
@@ -167,7 +167,7 @@ def plot_model_comparison(all_results, save_path):
     """
     Genera gráfico comparativo de todos los modelos
     """
-    print("\n📊 Generando gráfico comparativo...")
+    print("\n Generando gráfico comparativo...")
     
     # Preparar datos
     models = [r['model_name'] for r in all_results]
@@ -202,7 +202,7 @@ def plot_model_comparison(all_results, save_path):
     plt.tight_layout()
     
     plt.savefig(save_path / "model_comparison.png", dpi=300, bbox_inches='tight')
-    print(f"   ✅ Gráfico comparativo guardado: model_comparison.png")
+    print(f"    Gráfico comparativo guardado: model_comparison.png")
     plt.close()
 
 
@@ -210,7 +210,7 @@ def plot_per_class_performance(all_results, class_names, save_path):
     """
     Genera gráfico de desempeño por clase para cada modelo
     """
-    print("\n📊 Generando gráfico de desempeño por clase...")
+    print("\n Generando gráfico de desempeño por clase...")
     
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
     metrics = ['precision', 'recall', 'f1-score']
@@ -241,7 +241,7 @@ def plot_per_class_performance(all_results, class_names, save_path):
     plt.tight_layout()
     
     plt.savefig(save_path / "per_class_performance.png", dpi=300, bbox_inches='tight')
-    print(f"   ✅ Gráfico por clase guardado: per_class_performance.png")
+    print(f"    Gráfico por clase guardado: per_class_performance.png")
     plt.close()
 
 
@@ -249,7 +249,7 @@ def generate_evaluation_report(all_results, best_model_name):
     """
     Genera un reporte completo de evaluación
     """
-    print("\n📝 Generando reporte de evaluación...")
+    print("\n Generando reporte de evaluación...")
     
     report_lines = []
     
@@ -262,13 +262,13 @@ def generate_evaluation_report(all_results, best_model_name):
     report_lines.append("")
     
     # Resumen comparativo
-    report_lines.append("📊 RESUMEN COMPARATIVO")
+    report_lines.append(" RESUMEN COMPARATIVO")
     report_lines.append("-" * 80)
     report_lines.append(f"{'Modelo':<20} {'Accuracy':<12} {'Precision':<12} {'Recall':<12} {'F1-Score':<12}")
     report_lines.append("-" * 80)
     
     for result in sorted(all_results, key=lambda x: x['f1_score'], reverse=True):
-        marker = "🏆" if result['model_name'] == best_model_name else "  "
+        marker = "" if result['model_name'] == best_model_name else "  "
         report_lines.append(
             f"{marker} {result['model_name']:<18} "
             f"{result['accuracy']:<12.4f} "
@@ -280,7 +280,7 @@ def generate_evaluation_report(all_results, best_model_name):
     report_lines.append("")
     
     # Detalles por modelo
-    report_lines.append("🔍 DETALLES POR MODELO")
+    report_lines.append(" DETALLES POR MODELO")
     report_lines.append("-" * 80)
     
     for result in all_results:
@@ -305,7 +305,7 @@ def generate_evaluation_report(all_results, best_model_name):
     
     # Mejor modelo
     report_lines.append("")
-    report_lines.append("🏆 MODELO RECOMENDADO")
+    report_lines.append(" MODELO RECOMENDADO")
     report_lines.append("-" * 80)
     
     best_result = next(r for r in all_results if r['model_name'] == best_model_name)
@@ -318,7 +318,7 @@ def generate_evaluation_report(all_results, best_model_name):
     
     # Análisis de errores
     report_lines.append("")
-    report_lines.append("⚠️  ANÁLISIS DE ERRORES")
+    report_lines.append("️  ANÁLISIS DE ERRORES")
     report_lines.append("-" * 80)
     
     cm = np.array(best_result['confusion_matrix'])
@@ -348,7 +348,7 @@ def generate_evaluation_report(all_results, best_model_name):
     with open(report_file, 'w', encoding='utf-8') as f:
         f.write(report_text)
     
-    print(f"✅ Reporte guardado: evaluation_report.txt")
+    print(f" Reporte guardado: evaluation_report.txt")
     
     return report_text
 
@@ -357,7 +357,7 @@ def save_evaluation_results(all_results, best_model_name):
     """
     Guarda los resultados de evaluación en JSON
     """
-    print("\n💾 Guardando resultados de evaluación...")
+    print("\n Guardando resultados de evaluación...")
     
     # Preparar datos serializables (remover numpy arrays)
     results_serializable = []
@@ -377,12 +377,12 @@ def save_evaluation_results(all_results, best_model_name):
     with open(output_file, 'w') as f:
         json.dump(evaluation_data, f, indent=2)
     
-    print(f"✅ Resultados guardados: evaluation_results.json")
+    print(f" Resultados guardados: evaluation_results.json")
 
 
 def main():
     """Función principal"""
-    print("🚀 Iniciando Evaluación de Modelos\n")
+    print(" Iniciando Evaluación de Modelos\n")
     print("=" * 80)
     
     # 1. Cargar datos de test
@@ -408,7 +408,7 @@ def main():
     best_result = max(all_results, key=lambda x: x['f1_score'])
     best_model_name = best_result['model_name']
     
-    print(f"\n🏆 Mejor modelo: {best_model_name} (F1-Score: {best_result['f1_score']:.4f})")
+    print(f"\n Mejor modelo: {best_model_name} (F1-Score: {best_result['f1_score']:.4f})")
     
     # 5. Generar gráficos comparativos
     plot_model_comparison(all_results, figures_path)
@@ -423,11 +423,11 @@ def main():
     print("\n" + "=" * 80)
     print(report)
     
-    print("\n✅ Evaluación completada!")
-    print(f"📁 Resultados guardados en: {DATA_PATH}/")
+    print("\n Evaluación completada!")
+    print(f" Resultados guardados en: {DATA_PATH}/")
     print("   - evaluation_results.json")
     print("   - evaluation_report.txt")
-    print(f"\n📊 Gráficos guardados en: {FIGURES_PATH}/")
+    print(f"\n Gráficos guardados en: {FIGURES_PATH}/")
     print("   - confusion_matrix_*.png (3 archivos)")
     print("   - model_comparison.png")
     print("   - per_class_performance.png")

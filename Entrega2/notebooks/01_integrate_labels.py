@@ -114,7 +114,7 @@ def process_all_videos():
     features_path = Path(FEATURES_PATH)
     videos_json_path = Path(VIDEOS_JSON_PATH)
     
-    print("🔄 Procesando videos y etiquetas...\n")
+    print(" Procesando videos y etiquetas...\n")
     
     for person, videos_info in PERSONS.items():
         print(f"📹 Procesando: {person}")
@@ -133,10 +133,10 @@ def process_all_videos():
             
             # Verificar que existan los archivos
             if not feature_file.exists():
-                print(f"  ⚠️  No se encontró: {feature_file}")
+                print(f"  ️  No se encontró: {feature_file}")
                 continue
             if not json_file.exists():
-                print(f"  ⚠️  No se encontró: {json_file}")
+                print(f"  ️  No se encontró: {json_file}")
                 continue
             
             # Cargar features
@@ -162,10 +162,10 @@ def process_all_videos():
             
             # Verificar que existan los archivos
             if not feature_file.exists():
-                print(f"  ⚠️  No se encontró: {feature_file}")
+                print(f"  ️  No se encontró: {feature_file}")
                 continue
             if not json_file.exists():
-                print(f"  ⚠️  No se encontró: {json_file}")
+                print(f"  ️  No se encontró: {json_file}")
                 continue
             
             # Cargar features
@@ -212,12 +212,12 @@ def process_all_videos():
     
     complete_file = output_path / "labeled_dataset_complete.csv"
     df_complete.to_csv(complete_file, index=False)
-    print(f"✅ Dataset completo guardado: {complete_file}")
+    print(f" Dataset completo guardado: {complete_file}")
     
     # Guardar dataset solo con etiquetas principales
     main_file = output_path / "labeled_dataset_main.csv"
     df_main.to_csv(main_file, index=False)
-    print(f"✅ Dataset principal guardado: {main_file}")
+    print(f" Dataset principal guardado: {main_file}")
     
     # Guardar estadísticas (convertir tipos numpy a Python nativos)
     stats_serializable = {
@@ -233,13 +233,13 @@ def process_all_videos():
     stats_file = output_path / "integration_statistics.json"
     with open(stats_file, 'w') as f:
         json.dump(stats_serializable, f, indent=2)
-    print(f"✅ Estadísticas guardadas: {stats_file}")
+    print(f" Estadísticas guardadas: {stats_file}")
     
     # Guardar mapeo de etiquetas
     mapping_file = output_path / "label_mapping.json"
     with open(mapping_file, 'w') as f:
         json.dump(LABEL_MAPPING, f, indent=2)
-    print(f"✅ Mapeo de etiquetas guardado: {mapping_file}")
+    print(f" Mapeo de etiquetas guardado: {mapping_file}")
     
     return df_complete, df_main, stats
 
@@ -264,11 +264,11 @@ def process_other_group_videos():
     
     # Verificar si el directorio existe
     if not videos_json_path.exists():
-        print(f"⚠️  No se encontró el directorio: {videos_json_path}")
+        print(f"️  No se encontró el directorio: {videos_json_path}")
         print("   Ejecuta primero split_json_by_video.py para crear los archivos JSON individuales")
         return None, stats
     
-    print("\n🔄 Procesando videos del otro grupo...\n")
+    print("\n Procesando videos del otro grupo...\n")
     
     for person, info in OTHER_GROUP_VIDEOS.items():
         print(f"📹 Procesando: {person}")
@@ -281,11 +281,11 @@ def process_other_group_videos():
             
             # Verificar que existan los archivos
             if not json_file.exists():
-                print(f"  ⚠️  No se encontró JSON: {json_file}")
+                print(f"  ️  No se encontró JSON: {json_file}")
                 continue
             
             if not feature_file.exists():
-                print(f"  ⚠️  No se encontró features CSV: {feature_file}")
+                print(f"  ️  No se encontró features CSV: {feature_file}")
                 print(f"     Necesitas extraer features de este video primero")
                 continue
             
@@ -307,7 +307,7 @@ def process_other_group_videos():
         print()
     
     if not all_data:
-        print("⚠️  No se procesó ningún video del otro grupo")
+        print("️  No se procesó ningún video del otro grupo")
         return None, stats
     
     # Consolidar datos
@@ -323,7 +323,7 @@ def print_statistics(stats):
     Imprime estadísticas de forma legible
     """
     print("\n" + "="*60)
-    print("📊 ESTADÍSTICAS DE INTEGRACIÓN")
+    print(" ESTADÍSTICAS DE INTEGRACIÓN")
     print("="*60)
     
     print(f"\n📹 Videos procesados: {stats['total_videos']}")
@@ -335,7 +335,7 @@ def print_statistics(stats):
     print(f"   Frames etiquetados: {stats['labeled_frames']:,} ({stats['labeled_frames']/stats['total_frames']*100:.1f}%)")
     print(f"   Frames sin etiqueta: {stats['total_frames'] - stats['labeled_frames']:,}")
     
-    print(f"\n🎯 Frames con etiquetas principales: {stats['main_label_frames']:,}")
+    print(f"\n Frames con etiquetas principales: {stats['main_label_frames']:,}")
     print(f"   Frames excluidos: {stats['excluded_frames']:,}")
     
     print(f"\n🏷️  Distribución por etiqueta:")
@@ -348,7 +348,7 @@ def print_statistics(stats):
 
 
 if __name__ == "__main__":
-    print("🚀 Iniciando integración de etiquetas\n")
+    print(" Iniciando integración de etiquetas\n")
     
     # Procesar videos principales
     df_complete, df_main, stats = process_all_videos()
@@ -361,7 +361,7 @@ if __name__ == "__main__":
     df_other, stats_other = process_other_group_videos()
     
     if df_other is not None:
-        print(f"\n✅ Videos del otro grupo procesados: {stats_other['total_videos']}")
+        print(f"\n Videos del otro grupo procesados: {stats_other['total_videos']}")
         print(f"   Frames adicionales: {stats_other['total_frames']:,}")
         
         # Combinar con el dataset principal
@@ -386,11 +386,11 @@ if __name__ == "__main__":
         
         complete_file = output_path / "labeled_dataset_complete.csv"
         df_complete_combined.to_csv(complete_file, index=False)
-        print(f"\n✅ Dataset completo COMBINADO guardado: {complete_file}")
+        print(f"\n Dataset completo COMBINADO guardado: {complete_file}")
         
         main_file = output_path / "labeled_dataset_main.csv"
         df_main_combined.to_csv(main_file, index=False)
-        print(f"✅ Dataset principal COMBINADO guardado: {main_file}")
+        print(f" Dataset principal COMBINADO guardado: {main_file}")
         
         # Actualizar estadísticas
         stats_serializable = {
@@ -408,15 +408,15 @@ if __name__ == "__main__":
         stats_file = output_path / "integration_statistics.json"
         with open(stats_file, 'w') as f:
             json.dump(stats_serializable, f, indent=2)
-        print(f"✅ Estadísticas actualizadas: {stats_file}")
+        print(f" Estadísticas actualizadas: {stats_file}")
     else:
-        print("\n⚠️  No se pudieron procesar videos del otro grupo")
+        print("\n️  No se pudieron procesar videos del otro grupo")
         print("   Se usará solo el dataset original")
     
     print_statistics(stats)
     
-    print("✅ Integración completada exitosamente!")
-    print(f"\n📁 Archivos generados en: {OUTPUT_PATH}/")
+    print(" Integración completada exitosamente!")
+    print(f"\n Archivos generados en: {OUTPUT_PATH}/")
     print("   - labeled_dataset_complete.csv (todos los datos)")
     print("   - labeled_dataset_main.csv (solo etiquetas principales)")
     print("   - integration_statistics.json")

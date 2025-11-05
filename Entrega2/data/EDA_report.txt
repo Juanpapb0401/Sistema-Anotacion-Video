@@ -3,14 +3,14 @@ REPORTE DE ANÁLISIS EXPLORATORIO DE DATOS
 Sistema de Anotación de Video - Entrega 2
 ================================================================================
 
-📊 INFORMACIÓN GENERAL
+ INFORMACIÓN GENERAL
 --------------------------------------------------------------------------------
 Total de videos procesados: 47
 Total de frames: 41,724
 Frames etiquetados: 32,533 (78.0%)
 Frames con etiquetas principales: 20,158
 
-👥 VIDEOS POR PERSONA
+ VIDEOS POR PERSONA
 --------------------------------------------------------------------------------
 Joshua: 12 videos, 6,599 frames
 Juan: 12 videos, 5,224 frames
@@ -25,14 +25,14 @@ caminar_de_regreso: 2,510 frames (12.45%)
 sentarse: 2,363 frames (11.72%)
 ponerse_de_pie: 1,704 frames (8.45%)
 
-⚖️  BALANCE DE CLASES
+️  BALANCE DE CLASES
 --------------------------------------------------------------------------------
 Clase más frecuente: girar (7,101 frames)
 Clase menos frecuente: ponerse_de_pie (1,704 frames)
 Ratio de desbalance: 4.17x
-⚠️  ADVERTENCIA: Dataset desbalanceado. Considerar técnicas de balanceo.
+️  ADVERTENCIA: Dataset desbalanceado. Considerar técnicas de balanceo.
 
-⏱️  DURACIÓN PROMEDIO DE ACTIVIDADES (frames)
+️  DURACIÓN PROMEDIO DE ACTIVIDADES (frames)
 --------------------------------------------------------------------------------
 caminar_de_regreso:
   Media: 55.8 ± 20.0

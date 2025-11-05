@@ -3,7 +3,7 @@ REPORTE DE PREPARACIÓN DE DATOS
 Sistema de Anotación de Video - Entrega 2
 ================================================================================
 
-📊 INFORMACIÓN GENERAL
+ INFORMACIÓN GENERAL
 --------------------------------------------------------------------------------
 Dataset original: 29,701 frames
 Features extraídas: 147

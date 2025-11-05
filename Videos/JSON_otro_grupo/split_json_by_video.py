@@ -47,11 +47,11 @@ def split_json_by_video(input_file, output_dir):
     output_path.mkdir(parents=True, exist_ok=True)
     
     # Leer el archivo JSON
-    print(f"📂 Leyendo archivo: {input_file}")
+    print(f" Leyendo archivo: {input_file}")
     with open(input_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
-    print(f"✅ Total de tareas en el archivo: {len(data)}")
+    print(f" Total de tareas en el archivo: {len(data)}")
     
     # Diccionario para agrupar por video
     videos_dict = {}
@@ -79,15 +79,15 @@ def split_json_by_video(input_file, output_dir):
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(tasks, f, indent=2, ensure_ascii=False)
         
-        print(f"💾 Guardado: {output_file} ({len(tasks)} tarea(s))")
+        print(f" Guardado: {output_file} ({len(tasks)} tarea(s))")
         saved_count += 1
     
     # Reportar videos sin nombre
     if videos_without_name:
-        print(f"\n⚠️  Advertencia: {len(videos_without_name)} tarea(s) sin nombre de video identificable")
+        print(f"\n️  Advertencia: {len(videos_without_name)} tarea(s) sin nombre de video identificable")
         print("   Estas tareas no fueron guardadas en archivos individuales.")
     
-    print(f"\n✅ Proceso completado!")
+    print(f"\n Proceso completado!")
     print(f"   - {saved_count} archivos JSON creados")
     print(f"   - Ubicación: {output_dir}")
     
@@ -107,7 +107,7 @@ def main():
     print()
     
     if not input_file.exists():
-        print(f"❌ Error: No se encontró el archivo {input_file}")
+        print(f" Error: No se encontró el archivo {input_file}")
         return
     
     # Ejecutar la separación
