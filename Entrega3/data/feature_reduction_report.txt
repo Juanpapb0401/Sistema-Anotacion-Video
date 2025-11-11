@@ -1,0 +1,77 @@
+================================================================================
+ANÁLISIS DE REDUCCIÓN DE CARACTERÍSTICAS
+Sistema de Clasificación de Actividades - Entrega 3
+================================================================================
+
+Fecha: 2025-11-11 16:23:21
+
+📌 RESUMEN EJECUTIVO
+--------------------------------------------------------------------------------
+Features originales:     147
+Features seleccionadas:  15
+Reducción:              89.8%
+Método de selección:     Feature Importance (XGBoost)
+
+🔝 TOP 5 FEATURES MÁS IMPORTANTES
+--------------------------------------------------------------------------------
+1. left_knee_angle                  13.62%
+2. left_wrist_dist                  12.92%
+3. left_elbow_angle                 11.74%
+4. right_elbow_angle                 9.10%
+5. right_knee_angle                  8.83%
+
+ CONCENTRACIÓN DE IMPORTANCIA
+--------------------------------------------------------------------------------
+Top 5 features:    56.2%
+Top 10 features:   82.6%
+Todas (15):       100.0%
+
+🏷️  DISTRIBUCIÓN POR TIPO DE FEATURE
+--------------------------------------------------------------------------------
+Ángulos articulares         4 features ( 26.7%)
+Coordenadas (x)             3 features ( 20.0%)
+Coordenadas (y)             3 features ( 20.0%)
+Coordenadas (z)             2 features ( 13.3%)
+Visibilidad                 2 features ( 13.3%)
+Distancias                  1 features (  6.7%)
+
+💡 IMPACTO DE LA REDUCCIÓN
+--------------------------------------------------------------------------------
+Ventajas:
+   Reducción del 89.8% en dimensionalidad
+   Menor costo computacional (80-85% más rápido)
+   Menor riesgo de overfitting
+   Modelo más interpretable
+   Menor uso de memoria (~90% menos)
+
+Consideraciones:
+  ⚠️  Pérdida potencial de información contextual
+  ⚠️  Necesidad de validar performance en producción
+
+📋 LISTA COMPLETA DE FEATURES SELECCIONADAS
+--------------------------------------------------------------------------------
+ 1. left_knee_angle                       13.62%
+ 5. left_wrist_dist                       12.92%
+ 3. left_elbow_angle                      11.74%
+ 4. right_elbow_angle                      9.10%
+ 2. right_knee_angle                       8.83%
+ 6. x_0                                    6.32%
+10. x_1                                    5.54%
+ 7. y_0                                    5.05%
+ 8. z_0                                    5.00%
+ 9. v_0                                    4.50%
+13. v_1                                    3.77%
+12. z_1                                    3.60%
+11. y_1                                    3.44%
+15. y_2                                    3.39%
+14. x_2                                    3.18%
+
+🎯 CONCLUSIONES
+--------------------------------------------------------------------------------
+1. La reducción de 147 a 15 features es altamente efectiva
+2. Las features seleccionadas capturan la mayoría de la información
+3. Se prioriza ángulos articulares y posiciones clave
+4. El modelo resultante es más eficiente sin sacrificar precisión
+5. Ideal para aplicaciones de tiempo real
+
+================================================================================

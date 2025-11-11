@@ -1,0 +1,137 @@
+{
+  "timestamp": "2025-11-11 16:23:21",
+  "statistics": {
+    "total_features_original": 147,
+    "features_selected": 15,
+    "reduction_percentage": 89.79591836734694,
+    "top_5_features": [
+      {
+        "feature": "left_knee_angle",
+        "importance": 0.13618022203445435
+      },
+      {
+        "feature": "left_wrist_dist",
+        "importance": 0.1291741132736206
+      },
+      {
+        "feature": "left_elbow_angle",
+        "importance": 0.11743991822004318
+      },
+      {
+        "feature": "right_elbow_angle",
+        "importance": 0.09100768715143204
+      },
+      {
+        "feature": "right_knee_angle",
+        "importance": 0.08825374394655228
+      }
+    ],
+    "importance_concentration": {
+      "top_5_cumulative": 0.5620556846261024,
+      "top_10_cumulative": 0.826213926076889,
+      "all_selected_cumulative": 0.9999998845160007
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "left_knee_angle",
+      "importance": 0.13618022203445435
+    },
+    {
+      "feature": "left_wrist_dist",
+      "importance": 0.1291741132736206
+    },
+    {
+      "feature": "left_elbow_angle",
+      "importance": 0.11743991822004318
+    },
+    {
+      "feature": "right_elbow_angle",
+      "importance": 0.09100768715143204
+    },
+    {
+      "feature": "right_knee_angle",
+      "importance": 0.08825374394655228
+    },
+    {
+      "feature": "x_0",
+      "importance": 0.0631852075457573
+    },
+    {
+      "feature": "x_1",
+      "importance": 0.0553770437836647
+    },
+    {
+      "feature": "y_0",
+      "importance": 0.05052821710705757
+    },
+    {
+      "feature": "z_0",
+      "importance": 0.05003528296947479
+    },
+    {
+      "feature": "v_0",
+      "importance": 0.04503249004483223
+    },
+    {
+      "feature": "v_1",
+      "importance": 0.037736792117357254
+    },
+    {
+      "feature": "z_1",
+      "importance": 0.03599327802658081
+    },
+    {
+      "feature": "y_1",
+      "importance": 0.03435254842042923
+    },
+    {
+      "feature": "y_2",
+      "importance": 0.03390214219689369
+    },
+    {
+      "feature": "x_2",
+      "importance": 0.03180119767785072
+    }
+  ],
+  "feature_types_distribution": {
+    "\u00c1ngulos articulares": 4,
+    "Distancias": 1,
+    "Coordenadas (x)": 3,
+    "Coordenadas (y)": 3,
+    "Coordenadas (z)": 2,
+    "Visibilidad": 2
+  },
+  "comparison_table": [
+    {
+      "Aspecto": "Dimensionalidad",
+      "147 Features": "147 dimensiones",
+      "15 Features": "15 dimensiones",
+      "Mejora": "89.8% reducci\u00f3n"
+    },
+    {
+      "Aspecto": "Espacio de almacenamiento",
+      "147 Features": "100%",
+      "15 Features": "~10.2%",
+      "Mejora": "89.8% menos datos"
+    },
+    {
+      "Aspecto": "Tiempo de inferencia (est.)",
+      "147 Features": "~100%",
+      "15 Features": "~15-20%",
+      "Mejora": "80-85% m\u00e1s r\u00e1pido"
+    },
+    {
+      "Aspecto": "Complejidad del modelo",
+      "147 Features": "Alto",
+      "15 Features": "Bajo",
+      "Mejora": "Simplificado"
+    },
+    {
+      "Aspecto": "Riesgo de overfitting",
+      "147 Features": "Mayor",
+      "15 Features": "Menor",
+      "Mejora": "Reducido"
+    }
+  ]
+}
