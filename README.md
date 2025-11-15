@@ -13,22 +13,6 @@
 
 ---
 
-##  Tabla de Contenidos
-
-- [Descripción General](#-descripción-general)
-- [Características Principales](#-características-principales)
-- [Resultados Destacados](#-resultados-destacados)
-- [Arquitectura del Sistema](#-arquitectura-del-sistema)
-- [Instalación](#-instalación)
-- [Uso Rápido](#-uso-rápido)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Metodología](#-metodología)
-- [Tecnologías Utilizadas](#-tecnologías-utilizadas)
-- [Documentación](#-documentación)
-- [Autores](#-autores)
-
----
-
 ## Tener en cuenta
 
 Se utilizaron videos del grupo de Luis Manuel Rojas de la Universidad Icesi.
