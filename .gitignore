@@ -66,3 +66,5 @@ tmp/
 test_output/*.mp4
 *.csv
 Entrega2/data/train.csv
+
+GUION_VIDEO_PRESENTACION.md
