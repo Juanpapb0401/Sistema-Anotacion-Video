@@ -13,7 +13,15 @@
 
 ---
 
-## Tener en cuenta
+##  Video de Presentación
+
+[![Ver Video en YouTube](https://img.shields.io/badge/▶️_Ver_Video-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/wfaI14Zmnc8)
+
+> **Duración**: ~9 minutos | **Contenido**: Demostración completa del sistema, técnicas utilizadas, resultados y análisis de performance
+
+---
+
+##  Tener en cuenta
 
 Se utilizaron videos del grupo de Luis Manuel Rojas de la Universidad Icesi.
 La carpeta donde estan ubicados los Landmarks tanto de los videos de nuestro grupo como el del otro grupo, no se subieron al readme al igual que los archivos de los modelos realizados, por razones de seguridad y porque pesan mucho.
