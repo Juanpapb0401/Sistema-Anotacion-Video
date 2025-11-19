@@ -24,7 +24,7 @@
 ##  Tener en cuenta
 
 Se utilizaron videos del grupo de Luis Manuel Rojas de la Universidad Icesi.
-La carpeta donde estan ubicados los Landmarks tanto de los videos de nuestro grupo como el del otro grupo, no se subieron al readme al igual que los archivos de los modelos realizados, por razones de seguridad y porque pesan mucho.
+La carpeta donde estan ubicados los Landmarks tanto de los videos de nuestro grupo como el del otro grupo, no se subieron al readme al igual que los archivos de los modelos realizados, por razones de seguridad y porque pesan mucho. Es decir, si se clona el repositorio no se puede correr en vivo la implementación
 
 ##  Descripción General
 
